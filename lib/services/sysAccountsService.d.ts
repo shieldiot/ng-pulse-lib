@@ -1,8 +1,8 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
-import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { Account } from '../entities/Account';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
+import { AccountStatusCode } from '../enums/AccountStatusCode';
 import * as i0 from "@angular/core";
 export declare class SysAccountsService {
     private config;

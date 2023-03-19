@@ -1518,13 +1518,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                 }] }, { type: RestUtil }]; } });
 
 const Services = [
+    DevicesService,
+    EventsService,
     SysAccountsService,
     SysMembersService,
     SysStreamsService,
     SysUsersService,
     UserService,
-    DevicesService,
-    EventsService,
 ];
 
 class PulseLibModule {
