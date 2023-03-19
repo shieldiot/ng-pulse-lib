@@ -1,0 +1,9 @@
+// Response of byte array
+export class StreamResponse {
+    constructor(content) {
+        if (content !== undefined) {
+            this.content = content;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU3RyZWFtUmVzcG9uc2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy1wdWxzZS1saWIvc3JjL2xpYi9tZXNzYWdlcy9TdHJlYW1SZXNwb25zZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQSx5QkFBeUI7QUFDekIsTUFBTSxPQUFPLGNBQWM7SUFLdEIsWUFBWSxPQUFjO1FBQ3ZCLElBQUksT0FBTyxLQUFLLFNBQVMsRUFBRTtZQUFFLElBQUksQ0FBQyxPQUFPLEdBQUcsT0FBTyxDQUFDO1NBQUU7SUFDMUQsQ0FBQztDQUVKIiwic291cmNlc0NvbnRlbnQiOlsiXG5cblxuLy8gUmVzcG9uc2Ugb2YgYnl0ZSBhcnJheVxuZXhwb3J0IGNsYXNzIFN0cmVhbVJlc3BvbnNlIHtcbiBcbiAgICAvLyBcbiAgICBwdWJsaWMgY29udGVudDogRmlsZTtcbiBcbiAgICAgY29uc3RydWN0b3IoY29udGVudD86IEZpbGUpIHsgXG4gICAgICAgIGlmIChjb250ZW50ICE9PSB1bmRlZmluZWQpIHsgdGhpcy5jb250ZW50ID0gY29udGVudDsgfVxuICAgIH1cblxufVxuXG5cbiJdfQ==

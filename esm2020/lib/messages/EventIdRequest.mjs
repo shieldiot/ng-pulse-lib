@@ -1,0 +1,8 @@
+export class EventIdRequest {
+    constructor(id) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRXZlbnRJZFJlcXVlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy1wdWxzZS1saWIvc3JjL2xpYi9tZXNzYWdlcy9FdmVudElkUmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQSxNQUFNLE9BQU8sY0FBYztJQUt0QixZQUFZLEVBQVc7UUFDcEIsSUFBSSxFQUFFLEtBQUssU0FBUyxFQUFFO1lBQUUsSUFBSSxDQUFDLEVBQUUsR0FBRyxFQUFFLENBQUM7U0FBRTtJQUMzQyxDQUFDO0NBRUoiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5leHBvcnQgY2xhc3MgRXZlbnRJZFJlcXVlc3Qge1xuIFxuICAgIC8vIEV2ZW50IElkIFxuICAgIHB1YmxpYyBpZDogc3RyaW5nO1xuIFxuICAgICBjb25zdHJ1Y3RvcihpZD86IHN0cmluZykgeyBcbiAgICAgICAgaWYgKGlkICE9PSB1bmRlZmluZWQpIHsgdGhpcy5pZCA9IGlkOyB9XG4gICAgfVxuXG59XG5cblxuIl19

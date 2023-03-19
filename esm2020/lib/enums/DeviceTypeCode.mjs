@@ -1,0 +1,31 @@
+// Device type code
+export var DeviceTypeCode;
+(function (DeviceTypeCode) {
+    // Undefined [0] 
+    DeviceTypeCode[DeviceTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Industrial Controller [1] 
+    DeviceTypeCode[DeviceTypeCode["CONTROLLER"] = 1] = "CONTROLLER";
+    // General smart meter [2] 
+    DeviceTypeCode[DeviceTypeCode["METER"] = 2] = "METER";
+    // General sensor [3] 
+    DeviceTypeCode[DeviceTypeCode["SENSOR"] = 3] = "SENSOR";
+    // General camera [4] 
+    DeviceTypeCode[DeviceTypeCode["CAMERA"] = 4] = "CAMERA";
+    // Point of sale [5] 
+    DeviceTypeCode[DeviceTypeCode["POS"] = 5] = "POS";
+    // Pump [6] 
+    DeviceTypeCode[DeviceTypeCode["PUMP"] = 6] = "PUMP";
+    // EV charging station [7] 
+    DeviceTypeCode[DeviceTypeCode["CHARGING_STATION"] = 7] = "CHARGING_STATION";
+    // Smart lightning [8] 
+    DeviceTypeCode[DeviceTypeCode["LIGHTNING"] = 8] = "LIGHTNING";
+    // Temperature sensor [9] 
+    DeviceTypeCode[DeviceTypeCode["TEMPERATURE_SENSOR"] = 9] = "TEMPERATURE_SENSOR";
+    // Air Quality sensor [10] 
+    DeviceTypeCode[DeviceTypeCode["AIR_QUALITY_SENSOR"] = 10] = "AIR_QUALITY_SENSOR";
+    // Valve [11] 
+    DeviceTypeCode[DeviceTypeCode["VALVE"] = 11] = "VALVE";
+    // Gateway [12] 
+    DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 12] = "GATEWAY";
+})(DeviceTypeCode || (DeviceTypeCode = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGV2aWNlVHlwZUNvZGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy1wdWxzZS1saWIvc3JjL2xpYi9lbnVtcy9EZXZpY2VUeXBlQ29kZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSxtQkFBbUI7QUFDbkIsTUFBTSxDQUFOLElBQVksY0F5Q1g7QUF6Q0QsV0FBWSxjQUFjO0lBRXRCLGlCQUFpQjtJQUNqQiw2REFBYSxDQUFBO0lBRWIsNkJBQTZCO0lBQzdCLCtEQUFjLENBQUE7SUFFZCwyQkFBMkI7SUFDM0IscURBQVMsQ0FBQTtJQUVULHNCQUFzQjtJQUN0Qix1REFBVSxDQUFBO0lBRVYsc0JBQXNCO0lBQ3RCLHVEQUFVLENBQUE7SUFFVixxQkFBcUI7SUFDckIsaURBQU8sQ0FBQTtJQUVQLFlBQVk7SUFDWixtREFBUSxDQUFBO0lBRVIsMkJBQTJCO0lBQzNCLDJFQUFvQixDQUFBO0lBRXBCLHVCQUF1QjtJQUN2Qiw2REFBYSxDQUFBO0lBRWIsMEJBQTBCO0lBQzFCLCtFQUFzQixDQUFBO0lBRXRCLDJCQUEyQjtJQUMzQixnRkFBdUIsQ0FBQTtJQUV2QixjQUFjO0lBQ2Qsc0RBQVUsQ0FBQTtJQUVWLGdCQUFnQjtJQUNoQiwwREFBWSxDQUFBO0FBRWhCLENBQUMsRUF6Q1csY0FBYyxLQUFkLGNBQWMsUUF5Q3pCIiwic291cmNlc0NvbnRlbnQiOlsiXG4vLyBEZXZpY2UgdHlwZSBjb2RlXG5leHBvcnQgZW51bSBEZXZpY2VUeXBlQ29kZSB7XG4gXG4gICAgLy8gVW5kZWZpbmVkIFswXSBcbiAgICBVTkRFRklORUQgPSAwLFxuIFxuICAgIC8vIEluZHVzdHJpYWwgQ29udHJvbGxlciBbMV0gXG4gICAgQ09OVFJPTExFUiA9IDEsXG4gXG4gICAgLy8gR2VuZXJhbCBzbWFydCBtZXRlciBbMl0gXG4gICAgTUVURVIgPSAyLFxuIFxuICAgIC8vIEdlbmVyYWwgc2Vuc29yIFszXSBcbiAgICBTRU5TT1IgPSAzLFxuIFxuICAgIC8vIEdlbmVyYWwgY2FtZXJhIFs0XSBcbiAgICBDQU1FUkEgPSA0LFxuIFxuICAgIC8vIFBvaW50IG9mIHNhbGUgWzVdIFxuICAgIFBPUyA9IDUsXG4gXG4gICAgLy8gUHVtcCBbNl0gXG4gICAgUFVNUCA9IDYsXG4gXG4gICAgLy8gRVYgY2hhcmdpbmcgc3RhdGlvbiBbN10gXG4gICAgQ0hBUkdJTkdfU1RBVElPTiA9IDcsXG4gXG4gICAgLy8gU21hcnQgbGlnaHRuaW5nIFs4XSBcbiAgICBMSUdIVE5JTkcgPSA4LFxuIFxuICAgIC8vIFRlbXBlcmF0dXJlIHNlbnNvciBbOV0gXG4gICAgVEVNUEVSQVRVUkVfU0VOU09SID0gOSxcbiBcbiAgICAvLyBBaXIgUXVhbGl0eSBzZW5zb3IgWzEwXSBcbiAgICBBSVJfUVVBTElUWV9TRU5TT1IgPSAxMCxcbiBcbiAgICAvLyBWYWx2ZSBbMTFdIFxuICAgIFZBTFZFID0gMTEsXG4gXG4gICAgLy8gR2F0ZXdheSBbMTJdIFxuICAgIEdBVEVXQVkgPSAxMixcbiBcbn0iXX0=

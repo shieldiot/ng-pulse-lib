@@ -1,0 +1,32 @@
+{
+  "name": "@pulseiot/ng-pulse-lib",
+  "version": "1.0.0",
+  "description": "pulseiot API client library",
+  "peerDependencies": {
+    "@angular/common": "~14.2.12",
+    "@angular/core": "~14.2.12"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/pulseiot-ng-pulse-lib.mjs",
+  "es2020": "fesm2020/pulseiot-ng-pulse-lib.mjs",
+  "esm2020": "esm2020/pulseiot-ng-pulse-lib.mjs",
+  "fesm2020": "fesm2020/pulseiot-ng-pulse-lib.mjs",
+  "fesm2015": "fesm2015/pulseiot-ng-pulse-lib.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/pulseiot-ng-pulse-lib.mjs",
+      "es2020": "./fesm2020/pulseiot-ng-pulse-lib.mjs",
+      "es2015": "./fesm2015/pulseiot-ng-pulse-lib.mjs",
+      "node": "./fesm2015/pulseiot-ng-pulse-lib.mjs",
+      "default": "./fesm2020/pulseiot-ng-pulse-lib.mjs"
+    }
+  },
+  "sideEffects": false
+}
