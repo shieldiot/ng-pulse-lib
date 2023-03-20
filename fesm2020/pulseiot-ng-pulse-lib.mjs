@@ -881,6 +881,7 @@ function removeToken() {
 
 const headers = new HttpHeaders();
 headers.set('Content-Type', 'application/json');
+headers.set('Cache-Control', 'no-cache');
 /**
  * Utility class for all REST services with common functions
  */
