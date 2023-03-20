@@ -1,8 +1,8 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
+import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
-import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
@@ -37,6 +37,16 @@ export declare class DevicesService {
      * @Return: EntitiesResponse<Device>
      */
     find(accountId?: string, streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    /**
+     * Add tag to a device
+     * @Return: EntityResponse<Device>
+     */
+    addTag(id?: string, tag?: string): import("rxjs").Observable<any>;
+    /**
+     * Delete a tag from the device
+     * @Return: EntityResponse<Device>
+     */
+    deleteTag(id?: string, tag?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DevicesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DevicesService>;
 }

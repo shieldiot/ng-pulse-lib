@@ -6,6 +6,7 @@ export * from './ActionResponse';
 export * from './DeviceIdRequest';
 export * from './DevicesServiceCreateRequest';
 export * from './DevicesServiceFindRequest';
+export * from './DevicesServiceTagRequest';
 export * from './DevicesServiceUpdateRequest';
 export * from './EmptyRequest';
 export * from './EmptyResponse';

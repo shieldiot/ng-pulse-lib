@@ -18,10 +18,15 @@ export declare class UserService {
     authorize(body?: LoginParams): import("rxjs").Observable<any>;
     /**
      * Refresh token (set new expiration time) and associate with new account if required
-     * The response includes the newly refreshed token both in the HTTP header and in the message body as data
-     * @Return: ActionResponse
+     * The response includes the account details and the newly refreshed token in the HTTP header X-ACCESS-TOKEN
+     * @Return: EntityResponse<Account>
      */
     setAccount(id?: string): import("rxjs").Observable<any>;
+    /**
+     * Get the user's current account details
+     * @Return: EntityResponse<Account>
+     */
+    getAccount(): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UserService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UserService>;
 }
