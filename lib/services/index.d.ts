@@ -3,6 +3,8 @@ export * from './eventsService';
 export * from './services.export';
 export * from './sysAccountsService';
 export * from './sysMembersService';
+export * from './sysRuleTemplatesService';
+export * from './sysRulesService';
 export * from './sysStreamsService';
 export * from './sysUsersService';
 export * from './userService';

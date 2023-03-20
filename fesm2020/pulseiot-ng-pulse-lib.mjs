@@ -193,8 +193,12 @@ class Event extends BaseEntity {
 class Member extends BaseEntity {
 }
 
-// RuleTemplate entity is used to define rules quickly based on pre-defined templates
+// Deterministic Rule definition
 class Rule extends BaseEntity {
+}
+
+// RuleTemplate entity is used to define rules quickly based on pre-defined templates
+class RuleTemplate extends BaseEntity {
 }
 
 // SessionRecord represents network statistics for a session
@@ -591,6 +595,12 @@ class EntitiesResponseOfEvent extends EntitiesResponse {
 class EntitiesResponseOfMember extends EntitiesResponse {
 }
 
+class EntitiesResponseOfRule extends EntitiesResponse {
+}
+
+class EntitiesResponseOfRuleTemplate extends EntitiesResponse {
+}
+
 class EntitiesResponseOfStream extends EntitiesResponse {
 }
 
@@ -619,6 +629,12 @@ class EntityResponseOfEvent extends EntityResponse {
 }
 
 class EntityResponseOfMember extends EntityResponse {
+}
+
+class EntityResponseOfRule extends EntityResponse {
+}
+
+class EntityResponseOfRuleTemplate extends EntityResponse {
 }
 
 class EntityResponseOfStream extends EntityResponse {
@@ -713,6 +729,94 @@ class MembersServiceFindRequest {
 }
 
 class MembersServiceUpdateRequest {
+    constructor(body) {
+        if (body !== undefined) {
+            this.body = body;
+        }
+    }
+}
+
+class RuleIdRequest {
+    constructor(id) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+    }
+}
+
+class RuleTemplateIdRequest {
+    constructor(id) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+    }
+}
+
+class RuleTemplatesServiceCreateRequest {
+    constructor(body) {
+        if (body !== undefined) {
+            this.body = body;
+        }
+    }
+}
+
+class RuleTemplatesServiceFindRequest {
+    constructor(search, sort, page, size) {
+        if (search !== undefined) {
+            this.search = search;
+        }
+        if (sort !== undefined) {
+            this.sort = sort;
+        }
+        if (page !== undefined) {
+            this.page = page;
+        }
+        if (size !== undefined) {
+            this.size = size;
+        }
+    }
+}
+
+class RuleTemplatesServiceUpdateRequest {
+    constructor(body) {
+        if (body !== undefined) {
+            this.body = body;
+        }
+    }
+}
+
+class RulesServiceCreateRequest {
+    constructor(body) {
+        if (body !== undefined) {
+            this.body = body;
+        }
+    }
+}
+
+class RulesServiceFindRequest {
+    constructor(accountId, streamId, search, sort, page, size) {
+        if (accountId !== undefined) {
+            this.accountId = accountId;
+        }
+        if (streamId !== undefined) {
+            this.streamId = streamId;
+        }
+        if (search !== undefined) {
+            this.search = search;
+        }
+        if (sort !== undefined) {
+            this.sort = sort;
+        }
+        if (page !== undefined) {
+            this.page = page;
+        }
+        if (size !== undefined) {
+            this.size = size;
+        }
+    }
+}
+
+class RulesServiceUpdateRequest {
     constructor(body) {
         if (body !== undefined) {
             this.body = body;
@@ -1328,6 +1432,156 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                     args: ['config']
                 }] }, { type: RestUtil }]; } });
 
+// List of rule templates related actions for system administrator only 
+// @RequestHeader X-API-KEY The key to identify the application (console) 
+// @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
+class SysRuleTemplatesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/rule-templates';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new rule template
+     * @Return: EntityResponse<RuleTemplate>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update existing rule template
+     * @Return: EntityResponse<RuleTemplate>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete a rule template from the system
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single rule template by id
+     * @Return: EntityResponse<RuleTemplate>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of rule templates by query
+     * @Return: EntitiesResponse<RuleTemplate>
+     */
+    find(search, sort, page, size) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+SysRuleTemplatesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRuleTemplatesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysRuleTemplatesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRuleTemplatesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRuleTemplatesService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: PulseConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
+
+// List of rules related actions for system administrator only 
+// @RequestHeader X-API-KEY The key to identify the application (console) 
+// @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
+class SysRulesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/rules';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new rule
+     * @Return: EntityResponse<Rule>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update existing rule in the system
+     * @Return: EntityResponse<Rule>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete a rule from the system
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single rule by id
+     * @Return: EntityResponse<Rule>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of rules by query
+     * @Return: EntitiesResponse<Rule>
+     */
+    find(accountId, streamId, search, sort, page, size) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+SysRulesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRulesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysRulesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRulesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: SysRulesService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: PulseConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
+
 // List of stream related actions for system administrator only 
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
@@ -1531,6 +1785,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 const Services = [
     SysAccountsService,
     SysMembersService,
+    SysRuleTemplatesService,
+    SysRulesService,
     SysStreamsService,
     SysUsersService,
     UserService,
@@ -1566,5 +1822,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventTypeCode, EventsService, EventsServiceFindRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTypeCode, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
+export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventTypeCode, EventsService, EventsServiceFindRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

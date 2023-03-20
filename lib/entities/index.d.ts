@@ -8,6 +8,7 @@ export * from './Device';
 export * from './Event';
 export * from './Member';
 export * from './Rule';
+export * from './RuleTemplate';
 export * from './SessionRecord';
 export * from './Shieldex';
 export * from './Stream';
