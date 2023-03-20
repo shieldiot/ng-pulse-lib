@@ -5,7 +5,6 @@ import * as i0 from "@angular/core";
  */
 export declare class RestUtil {
     private http;
-    private headers;
     /**
      * Constructor with injected authentication service
      */
@@ -49,3 +48,13 @@ export declare class RestUtil {
     static ɵfac: i0.ɵɵFactoryDeclaration<RestUtil, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<RestUtil>;
 }
+/**
+ * Set API Key in the global headers object
+ * @param apiKey The API Key string
+ */
+export declare function SetApiKey(apiKey: string): void;
+/**
+ * Set Access Token in the global headers object
+ * @param token The Token string
+ */
+export declare function SetToken(token: string): void;

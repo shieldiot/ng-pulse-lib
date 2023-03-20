@@ -866,8 +866,8 @@ class WebSocketMessageHeader {
 }
 
 // Access token key in the local storage
-const tokenKey = 'portalAccessToken';
-const loginKey = 'portalLoginData';
+const tokenKey = 'pulseAccessToken';
+const loginKey = 'pulseLoginData';
 function getToken() {
     return localStorage.getItem(tokenKey);
 }
@@ -879,17 +879,19 @@ function removeToken() {
     localStorage.removeItem(loginKey);
 }
 
+const headers = new HttpHeaders();
+headers.set('Content-Type', 'application/json');
 /**
  * Utility class for all REST services with common functions
  */
 class RestUtil {
+    // Set headers
+    // private headers = new HttpHeaders().set('Content-Type', 'application/json');
     /**
      * Constructor with injected authentication service
      */
     constructor(http) {
         this.http = http;
-        // Set headers
-        this.headers = new HttpHeaders().set('Content-Type', 'application/json');
     }
     /**
      * Upload is HTTP POST action but the body is File object
@@ -919,14 +921,6 @@ class RestUtil {
                 }
             }
         });
-        // return this.http.get(resourceUrl, {responseType: 'blob'}).subscribe((data) => {
-        //   const downloadURL = window.URL.createObjectURL(data);
-        //   const link = document.createElement('a');
-        //   link.href = downloadURL;
-        //   link.download = downloadLink;
-        //
-        //   link.click();
-        // });
         // Set content type for: json / csv / xml / pdf
         let contentType = 'application/json';
         if (downloadLink.toLowerCase().endsWith('csv')) {
@@ -951,7 +945,7 @@ class RestUtil {
     get(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .get(resourceUrl, { headers: this.headers, observe: 'response' })
+            .get(resourceUrl, { headers: headers, observe: 'response' })
             .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
     }
     /**
@@ -960,7 +954,7 @@ class RestUtil {
     post(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .post(resourceUrl, body, { headers: this.headers, observe: 'response' })
+            .post(resourceUrl, body, { headers: headers, observe: 'response' })
             .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
     }
     /**
@@ -969,7 +963,7 @@ class RestUtil {
     put(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .put(resourceUrl, body, { headers: this.headers, observe: 'response' })
+            .put(resourceUrl, body, { headers: headers, observe: 'response' })
             .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
     }
     /**
@@ -978,7 +972,7 @@ class RestUtil {
     delete(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .delete(resourceUrl, { headers: this.headers, observe: 'response' })
+            .delete(resourceUrl, { headers: headers, observe: 'response' })
             .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
     }
     /**
@@ -993,6 +987,7 @@ class RestUtil {
     processResponse(response) {
         if (response.status === 401) {
             removeToken();
+            headers.set('X-ACCESS-TOKEN', '');
             throw new Error('Access denied, reset token: ' + response.status);
         }
         else if (response.status > 400) {
@@ -1002,6 +997,7 @@ class RestUtil {
         const accessToken = response.headers.get('X-ACCESS-TOKEN');
         if ((accessToken !== null) && (accessToken.length > 0)) {
             setToken(accessToken);
+            headers.set('X-ACCESS-TOKEN', accessToken);
         }
         if (response.body && response.body.code && response.body.code !== 0) {
             throw { code: response.body.code, message: response.body.error };
@@ -1023,6 +1019,20 @@ RestUtil.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "1
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: RestUtil, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
+/**
+ * Set API Key in the global headers object
+ * @param apiKey The API Key string
+ */
+function SetApiKey(apiKey) {
+    headers.set('X-API-KEY', apiKey);
+}
+/**
+ * Set Access Token in the global headers object
+ * @param token The Token string
+ */
+function SetToken(token) {
+    headers.set('X-ACCESS-TOKEN', token);
+}
 
 class PulseConfig {
 }
@@ -1518,13 +1528,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                 }] }, { type: RestUtil }]; } });
 
 const Services = [
-    DevicesService,
-    EventsService,
     SysAccountsService,
     SysMembersService,
     SysStreamsService,
     SysUsersService,
     UserService,
+    DevicesService,
+    EventsService,
 ];
 
 class PulseLibModule {
@@ -1555,5 +1565,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventTypeCode, EventsService, EventsServiceFindRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
+export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventTypeCode, EventsService, EventsServiceFindRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTypeCode, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
