@@ -996,7 +996,7 @@ function removeToken() {
 
 const headers = new HttpHeaders();
 headers.set('Content-Type', 'application/json');
-headers.set('Cache-Control', 'no-cache');
+headers.set('Cache-Control', 'no-cache, no-store');
 /**
  * Utility class for all REST services with common functions
  */
@@ -1833,8 +1833,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
     } });
 
 const Services = [
-    DevicesService,
-    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -1842,6 +1840,8 @@ const Services = [
     SysStreamsService,
     SysUsersService,
     UserService,
+    DevicesService,
+    EventsService,
 ];
 
 class PulseLibModule {

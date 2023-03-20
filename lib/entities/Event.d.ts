@@ -1,8 +1,8 @@
-import { SeverityTypeCode } from '../enums/SeverityTypeCode';
 import { Indicator } from '../common/Indicator';
 import { RuleTypeCode } from '../enums/RuleTypeCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { EventTypeCode } from '../enums/EventTypeCode';
+import { SeverityTypeCode } from '../enums/SeverityTypeCode';
 export declare class Event extends BaseEntity {
     accountId: string;
     streamId: string;
