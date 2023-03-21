@@ -1,8 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
-import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
+import { DeviceActionCode } from '../enums/DeviceActionCode';
+import { Device } from '../entities/Device';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
@@ -47,6 +48,11 @@ export declare class DevicesService {
      * @Return: EntityResponse<Device>
      */
     deleteTag(id?: string, tag?: string): import("rxjs").Observable<any>;
+    /**
+     * Apply action on a device
+     * @Return: ActionResponse
+     */
+    applyAction(id?: string, action?: DeviceActionCode): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DevicesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DevicesService>;
 }

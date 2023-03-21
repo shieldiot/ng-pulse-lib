@@ -267,6 +267,19 @@ var AccountTypeCode;
     AccountTypeCode[AccountTypeCode["CUSTOMER"] = 4] = "CUSTOMER";
 })(AccountTypeCode || (AccountTypeCode = {}));
 
+// Device action code
+var DeviceActionCode;
+(function (DeviceActionCode) {
+    // Undefined [0] 
+    DeviceActionCode[DeviceActionCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Redirect device traffic [1] 
+    DeviceActionCode[DeviceActionCode["REDIRECT"] = 1] = "REDIRECT";
+    // Block device [2] 
+    DeviceActionCode[DeviceActionCode["BLOCK"] = 2] = "BLOCK";
+    // Throttle device traffic [3] 
+    DeviceActionCode[DeviceActionCode["THROTTLE"] = 3] = "THROTTLE";
+})(DeviceActionCode || (DeviceActionCode = {}));
+
 // Device status code
 var DeviceStatusCode;
 (function (DeviceStatusCode) {
@@ -312,6 +325,21 @@ var DeviceTypeCode;
     // Gateway [12] 
     DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 12] = "GATEWAY";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
+
+// Event workflow status code
+var EventStatusCode;
+(function (EventStatusCode) {
+    // Undefined [0] 
+    EventStatusCode[EventStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // New event [1] 
+    EventStatusCode[EventStatusCode["NEW"] = 1] = "NEW";
+    // Open event, handled by the operator [2] 
+    EventStatusCode[EventStatusCode["OPEN"] = 2] = "OPEN";
+    // Closed event (tagged as True event) [3] 
+    EventStatusCode[EventStatusCode["CLOSED_TRUE"] = 3] = "CLOSED_TRUE";
+    // Closed event (tagged as False event) [4] 
+    EventStatusCode[EventStatusCode["CLOSED_FALSE"] = 4] = "CLOSED_FALSE";
+})(EventStatusCode || (EventStatusCode = {}));
 
 // Event type code
 var EventTypeCode;
@@ -500,6 +528,17 @@ class DeviceIdRequest {
     constructor(id) {
         if (id !== undefined) {
             this.id = id;
+        }
+    }
+}
+
+class DevicesServiceActionRequest {
+    constructor(id, action) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+        if (action !== undefined) {
+            this.action = action;
         }
     }
 }
@@ -696,6 +735,17 @@ class EventsServiceFindRequest {
         }
         if (size !== undefined) {
             this.size = size;
+        }
+    }
+}
+
+class EventsServiceStatusRequest {
+    constructor(id, status) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+        if (status !== undefined) {
+            this.status = status;
         }
     }
 }
@@ -1241,6 +1291,13 @@ class DevicesService {
     deleteTag(id, tag) {
         return this.rest.delete(`${this.baseUrl}/${id}/tags/${tag}`);
     }
+    /**
+     * Apply action on a device
+     * @Return: ActionResponse
+     */
+    applyAction(id, action) {
+        return this.rest.post(`${this.baseUrl}/${id}/action/${action}`, '');
+    }
 }
 DevicesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: DevicesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
 DevicesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: DevicesService });
@@ -1309,6 +1366,13 @@ class EventsService {
             params.push(`size=${size}`);
         }
         return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Set event status
+     * @Return: ActionResponse
+     */
+    applyAction(id, status) {
+        return this.rest.post(`${this.baseUrl}/${id}/status/${status}`, '');
     }
 }
 EventsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -1854,5 +1918,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceTagRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventTypeCode, EventsService, EventsServiceFindRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
+export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceActionRequest, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceTagRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventStatusCode, EventTypeCode, EventsService, EventsServiceFindRequest, EventsServiceStatusRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
