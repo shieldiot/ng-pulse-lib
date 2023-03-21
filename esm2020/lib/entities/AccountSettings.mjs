@@ -1,0 +1,9 @@
+// AccountSettings is a set of account attributes
+export class AccountSettings {
+    constructor(logo) {
+        if (logo !== undefined) {
+            this.logo = logo;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWNjb3VudFNldHRpbmdzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvbmctcHVsc2UtbGliL3NyYy9saWIvZW50aXRpZXMvQWNjb3VudFNldHRpbmdzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBLGlEQUFpRDtBQUNqRCxNQUFNLE9BQU8sZUFBZTtJQUt2QixZQUFZLElBQWE7UUFDdEIsSUFBSSxJQUFJLEtBQUssU0FBUyxFQUFFO1lBQUUsSUFBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7U0FBRTtJQUNqRCxDQUFDO0NBRUoiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG4vLyBBY2NvdW50U2V0dGluZ3MgaXMgYSBzZXQgb2YgYWNjb3VudCBhdHRyaWJ1dGVzXG5leHBvcnQgY2xhc3MgQWNjb3VudFNldHRpbmdzIHtcbiBcbiAgICAvLyBBY2NvdW50IGxvZ28gVVJMIChzdGFydHMgd2l0aCBodHRwKSBvciBlbWJlZGRlZCBpbWFnZSAoYmFzZTY0KSBcbiAgICBwdWJsaWMgbG9nbzogc3RyaW5nO1xuIFxuICAgICBjb25zdHJ1Y3Rvcihsb2dvPzogc3RyaW5nKSB7IFxuICAgICAgICBpZiAobG9nbyAhPT0gdW5kZWZpbmVkKSB7IHRoaXMubG9nbyA9IGxvZ287IH1cbiAgICB9XG5cbn1cblxuXG4iXX0=

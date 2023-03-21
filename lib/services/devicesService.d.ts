@@ -1,9 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
-import { DeviceTypeCode } from '../enums/DeviceTypeCode';
-import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { Device } from '../entities/Device';
+import { DeviceTypeCode } from '../enums/DeviceTypeCode';
+import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;

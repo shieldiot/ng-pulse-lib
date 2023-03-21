@@ -27,6 +27,11 @@ export declare class UserService {
      * @Return: EntityResponse<Account>
      */
     getAccount(): import("rxjs").Observable<any>;
+    /**
+     * Get all the user memberships (all accounts that the current user has access to)
+     * @Return: EntityResponse<UserMemberships>
+     */
+    getMemberships(): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UserService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UserService>;
 }

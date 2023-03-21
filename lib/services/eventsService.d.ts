@@ -1,8 +1,8 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
+import { EventStatusCode } from '../enums/EventStatusCode';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
-import { EventStatusCode } from '../enums/EventStatusCode';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;

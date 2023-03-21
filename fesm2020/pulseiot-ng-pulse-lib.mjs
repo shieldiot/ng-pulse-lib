@@ -7,9 +7,12 @@ import { CommonModule } from '@angular/common';
 
 // Account role represents the role of the user in the account
 class AccountRole {
-    constructor(accountId, role) {
+    constructor(accountId, accountName, role) {
         if (accountId !== undefined) {
             this.accountId = accountId;
+        }
+        if (accountName !== undefined) {
+            this.accountName = accountName;
         }
         if (role !== undefined) {
             this.role = role;
@@ -130,6 +133,15 @@ class BaseEntity {
 
 // Account entity in the system represents customer account
 class Account extends BaseEntity {
+}
+
+// AccountSettings is a set of account attributes
+class AccountSettings {
+    constructor(logo) {
+        if (logo !== undefined) {
+            this.logo = logo;
+        }
+    }
 }
 
 // Audit Log - each entry represents a single action done by user
@@ -325,6 +337,17 @@ var DeviceTypeCode;
     // Gateway [12] 
     DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 12] = "GATEWAY";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
+
+// Event category code
+var EventCategoryCode;
+(function (EventCategoryCode) {
+    // Undefined [0] 
+    EventCategoryCode[EventCategoryCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Cyber-Security event [1] 
+    EventCategoryCode[EventCategoryCode["SECURITY"] = 1] = "SECURITY";
+    // Operational event [2] 
+    EventCategoryCode[EventCategoryCode["OPERATIONS"] = 2] = "OPERATIONS";
+})(EventCategoryCode || (EventCategoryCode = {}));
 
 // Event workflow status code
 var EventStatusCode;
@@ -1868,6 +1891,13 @@ class UserService {
     getAccount() {
         return this.rest.get(`${this.baseUrl}/get-account`);
     }
+    /**
+     * Get all the user memberships (all accounts that the current user has access to)
+     * @Return: EntityResponse<UserMemberships>
+     */
+    getMemberships() {
+        return this.rest.get(`${this.baseUrl}/memberships`);
+    }
 }
 UserService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: UserService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
 UserService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: UserService });
@@ -1918,5 +1948,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountIdRequest, AccountRole, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceActionRequest, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceTagRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventIdRequest, EventStatusCode, EventTypeCode, EventsService, EventsServiceFindRequest, EventsServiceStatusRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
+export { Account, AccountIdRequest, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceActionRequest, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceTagRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventCategoryCode, EventIdRequest, EventStatusCode, EventTypeCode, EventsService, EventsServiceFindRequest, EventsServiceStatusRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

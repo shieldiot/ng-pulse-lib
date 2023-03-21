@@ -1,5 +1,5 @@
-import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
+import { EventTypeCode } from '../enums/EventTypeCode';
 export declare class EventsServiceFindRequest {
     accountId: string;
     streamId: string;

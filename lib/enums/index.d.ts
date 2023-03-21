@@ -3,6 +3,7 @@ export * from './AccountTypeCode';
 export * from './DeviceActionCode';
 export * from './DeviceStatusCode';
 export * from './DeviceTypeCode';
+export * from './EventCategoryCode';
 export * from './EventStatusCode';
 export * from './EventTypeCode';
 export * from './MemberRoleCode';
