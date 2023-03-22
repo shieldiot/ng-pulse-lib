@@ -1,9 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
-import { UserMemberships } from '../entities/UserMemberships';
 import { User } from '../entities/User';
 import { UserTypeCode } from '../enums/UserTypeCode';
 import { UserStatusCode } from '../enums/UserStatusCode';
+import { UserMemberships } from '../entities/UserMemberships';
 import * as i0 from "@angular/core";
 export declare class SysUsersService {
     private config;

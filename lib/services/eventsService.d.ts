@@ -1,8 +1,8 @@
 import { RestUtil } from '../../utils/rest-util';
 import { PulseConfig } from '../../config';
-import { EventStatusCode } from '../enums/EventStatusCode';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
+import { EventStatusCode } from '../enums/EventStatusCode';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
@@ -21,7 +21,7 @@ export declare class EventsService {
      * Find list of events by query
      * @Return: EntitiesResponse<Event>
      */
-    find(accountId?: string, streamId?: string, deviceId?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(streamId?: string, deviceId?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
     /**
      * Set event status
      * @Return: ActionResponse

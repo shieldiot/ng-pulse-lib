@@ -575,10 +575,7 @@ class DevicesServiceCreateRequest {
 }
 
 class DevicesServiceFindRequest {
-    constructor(accountId, streamId, search, type, status, sort, page, size) {
-        if (accountId !== undefined) {
-            this.accountId = accountId;
-        }
+    constructor(streamId, search, type, status, sort, page, size) {
         if (streamId !== undefined) {
             this.streamId = streamId;
         }
@@ -728,10 +725,7 @@ class EventIdRequest {
 }
 
 class EventsServiceFindRequest {
-    constructor(accountId, streamId, deviceId, from, to, type, severity, sort, page, size) {
-        if (accountId !== undefined) {
-            this.accountId = accountId;
-        }
+    constructor(streamId, deviceId, from, to, type, severity, sort, page, size) {
         if (streamId !== undefined) {
             this.streamId = streamId;
         }
@@ -1272,11 +1266,8 @@ class DevicesService {
      * Find list of devices by query
      * @Return: EntitiesResponse<Device>
      */
-    find(accountId, streamId, search, type, status, sort, page, size) {
+    find(streamId, search, type, status, sort, page, size) {
         const params = new Array();
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
         }
@@ -1356,11 +1347,8 @@ class EventsService {
      * Find list of events by query
      * @Return: EntitiesResponse<Event>
      */
-    find(accountId, streamId, deviceId, from, to, type, severity, sort, page, size) {
+    find(streamId, deviceId, from, to, type, severity, sort, page, size) {
         const params = new Array();
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
         }

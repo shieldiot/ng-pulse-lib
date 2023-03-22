@@ -37,7 +37,7 @@ export declare class DevicesService {
      * Find list of devices by query
      * @Return: EntitiesResponse<Device>
      */
-    find(accountId?: string, streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
     /**
      * Add tag to a device
      * @Return: EntityResponse<Device>
