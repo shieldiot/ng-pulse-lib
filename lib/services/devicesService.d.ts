@@ -1,58 +1,47 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
+import { DeviceActionCode } from '../enums/DeviceActionCode';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Create new device
-     * @Return: EntityResponse<Device>
      */
-    create(): import("rxjs").Observable<any>;
+    create(): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Device>>>;
     /**
      * Update existing device in the system
-     * @Return: EntityResponse<Device>
      */
-    update(body?: Device): import("rxjs").Observable<any>;
+    update(body?: Device): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Device>>>;
     /**
      * Delete device from the system
-     * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     /**
      * Get single device by id
-     * @Return: EntityResponse<Device>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<Device>>;
     /**
      * Find list of devices by query
-     * @Return: EntitiesResponse<Device>
      */
-    find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Device>>;
     /**
      * Add tag to a device
-     * @Return: EntityResponse<Device>
      */
-    addTag(id?: string, tag?: string): import("rxjs").Observable<any>;
+    addTag(id?: string, tag?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Device>>>;
     /**
      * Delete a tag from the device
-     * @Return: EntityResponse<Device>
      */
-    deleteTag(id?: string, tag?: string): import("rxjs").Observable<any>;
+    deleteTag(id?: string, tag?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Device>>>;
     /**
      * Apply action on a device
-     * @Return: ActionResponse
      */
-    applyAction(id?: string, action?: DeviceActionCode): import("rxjs").Observable<any>;
+    applyAction(id?: string, action?: DeviceActionCode): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DevicesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DevicesService>;
 }

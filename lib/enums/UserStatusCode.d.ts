@@ -5,3 +5,4 @@ export declare enum UserStatusCode {
     BLOCKED = 3,
     SUSPENDED = 4
 }
+export declare function GetUserStatusCodes(): Map<UserStatusCode, string>;

@@ -4,3 +4,4 @@ export declare enum DeviceActionCode {
     BLOCK = 2,
     THROTTLE = 3
 }
+export declare function GetDeviceActionCodes(): Map<DeviceActionCode, string>;

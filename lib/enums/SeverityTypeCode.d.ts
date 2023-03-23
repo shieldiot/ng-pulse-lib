@@ -9,3 +9,4 @@ export declare enum SeverityTypeCode {
     HIGHEST = 7,
     CRITICAL = 8
 }
+export declare function GetSeverityTypeCodes(): Map<SeverityTypeCode, string>;

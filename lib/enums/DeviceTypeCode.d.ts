@@ -13,3 +13,4 @@ export declare enum DeviceTypeCode {
     VALVE = 11,
     GATEWAY = 12
 }
+export declare function GetDeviceTypeCodes(): Map<DeviceTypeCode, string>;

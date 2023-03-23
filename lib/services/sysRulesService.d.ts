@@ -1,4 +1,4 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
 import { Rule } from '../entities/Rule';
 import * as i0 from "@angular/core";
@@ -6,35 +6,27 @@ export declare class SysRulesService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Create new rule
-     * @Return: EntityResponse<Rule>
      */
-    create(body?: Rule): import("rxjs").Observable<any>;
+    create(body?: Rule): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Rule>>>;
     /**
      * Update existing rule in the system
-     * @Return: EntityResponse<Rule>
      */
-    update(body?: Rule): import("rxjs").Observable<any>;
+    update(body?: Rule): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Rule>>>;
     /**
      * Delete a rule from the system
-     * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     /**
      * Get single rule by id
-     * @Return: EntityResponse<Rule>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<Rule>>;
     /**
      * Find list of rules by query
-     * @Return: EntitiesResponse<Rule>
      */
-    find(accountId?: string, streamId?: string, search?: string, sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(accountId?: string, streamId?: string, search?: string, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Rule>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysRulesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysRulesService>;
 }

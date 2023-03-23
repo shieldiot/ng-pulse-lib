@@ -1,32 +1,27 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
 import { EventStatusCode } from '../enums/EventStatusCode';
+import { Event } from '../entities/Event';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Get single event by id
-     * @Return: EntityResponse<Event>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<Event>>;
     /**
      * Find list of events by query
-     * @Return: EntitiesResponse<Event>
      */
-    find(streamId?: string, deviceId?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(streamId?: string, deviceId?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Event>>;
     /**
      * Set event status
-     * @Return: ActionResponse
      */
-    applyAction(id?: string, status?: EventStatusCode): import("rxjs").Observable<any>;
+    applyAction(id?: string, status?: EventStatusCode): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<EventsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<EventsService>;
 }

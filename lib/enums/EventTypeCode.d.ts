@@ -17,3 +17,4 @@ export declare enum EventTypeCode {
     CRYPTO_MINING = 15,
     SUSPICIOUS_IP = 16
 }
+export declare function GetEventTypeCodes(): Map<EventTypeCode, string>;

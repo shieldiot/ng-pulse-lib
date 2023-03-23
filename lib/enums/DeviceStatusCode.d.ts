@@ -5,3 +5,4 @@ export declare enum DeviceStatusCode {
     INACTIVE = 3,
     SUSPENDED = 4
 }
+export declare function GetDeviceStatusCodes(): Map<DeviceStatusCode, string>;

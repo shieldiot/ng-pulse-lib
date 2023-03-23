@@ -5,3 +5,4 @@ export declare enum AccountTypeCode {
     PARTNER = 3,
     CUSTOMER = 4
 }
+export declare function GetAccountTypeCodes(): Map<AccountTypeCode, string>;

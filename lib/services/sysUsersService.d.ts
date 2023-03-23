@@ -1,4 +1,4 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
 import { User } from '../entities/User';
 import { UserTypeCode } from '../enums/UserTypeCode';
@@ -9,40 +9,31 @@ export declare class SysUsersService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Create new user
-     * @Return: EntityResponse<User>
      */
-    create(body?: User): import("rxjs").Observable<any>;
+    create(body?: User): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<User>>>;
     /**
      * Update existing user in the system
-     * @Return: EntityResponse<User>
      */
-    update(body?: User): import("rxjs").Observable<any>;
+    update(body?: User): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<User>>>;
     /**
      * Delete a user from the system
-     * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     /**
      * Get single user by id
-     * @Return: EntityResponse<User>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<User>>;
     /**
      * Find list of users by query
-     * @Return: EntitiesResponse<User>
      */
-    find(search?: string, type?: UserTypeCode[], status?: UserStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(search?: string, type?: UserTypeCode[], status?: UserStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<User>>;
     /**
      * Create new user with all its accounts memberships
-     * @Return: EntityResponse<UserMemberships>
      */
-    createMembership(body?: UserMemberships): import("rxjs").Observable<any>;
+    createMembership(body?: UserMemberships): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<UserMemberships>>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysUsersService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysUsersService>;
 }

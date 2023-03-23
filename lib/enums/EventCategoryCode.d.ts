@@ -3,3 +3,4 @@ export declare enum EventCategoryCode {
     SECURITY = 1,
     OPERATIONS = 2
 }
+export declare function GetEventCategoryCodes(): Map<EventCategoryCode, string>;

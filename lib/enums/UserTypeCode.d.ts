@@ -5,3 +5,4 @@ export declare enum UserTypeCode {
     USER = 4,
     SERVICE = 5
 }
+export declare function GetUserTypeCodes(): Map<UserTypeCode, string>;

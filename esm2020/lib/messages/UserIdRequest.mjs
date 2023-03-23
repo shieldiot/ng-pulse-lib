@@ -1,8 +1,0 @@
-export class UserIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlcklkUmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL25nLXB1bHNlLWxpYi9zcmMvbGliL21lc3NhZ2VzL1VzZXJJZFJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0EsTUFBTSxPQUFPLGFBQWE7SUFLckIsWUFBWSxFQUFXO1FBQ3BCLElBQUksRUFBRSxLQUFLLFNBQVMsRUFBRTtZQUFFLElBQUksQ0FBQyxFQUFFLEdBQUcsRUFBRSxDQUFDO1NBQUU7SUFDM0MsQ0FBQztDQUVKIiwic291cmNlc0NvbnRlbnQiOlsiXG5cblxuZXhwb3J0IGNsYXNzIFVzZXJJZFJlcXVlc3Qge1xuIFxuICAgIC8vIFVzZXIgSWQgXG4gICAgcHVibGljIGlkOiBzdHJpbmc7XG4gXG4gICAgIGNvbnN0cnVjdG9yKGlkPzogc3RyaW5nKSB7IFxuICAgICAgICBpZiAoaWQgIT09IHVuZGVmaW5lZCkgeyB0aGlzLmlkID0gaWQ7IH1cbiAgICB9XG5cbn1cblxuXG4iXX0=

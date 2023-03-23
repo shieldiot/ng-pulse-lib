@@ -4,3 +4,4 @@ export declare enum AccountStatusCode {
     SUSPENDED = 2,
     DELETED = 3
 }
+export declare function GetAccountStatusCodes(): Map<AccountStatusCode, string>;

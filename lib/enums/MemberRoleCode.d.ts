@@ -4,3 +4,4 @@ export declare enum MemberRoleCode {
     OPERATOR = 2,
     VIEWER = 3
 }
+export declare function GetMemberRoleCodes(): Map<MemberRoleCode, string>;

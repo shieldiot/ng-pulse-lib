@@ -1,4 +1,4 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
 import { Member } from '../entities/Member';
 import * as i0 from "@angular/core";
@@ -6,35 +6,27 @@ export declare class SysMembersService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Create new member
-     * @Return: EntityResponse<Member>
      */
-    create(body?: Member): import("rxjs").Observable<any>;
+    create(body?: Member): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Member>>>;
     /**
      * Update existing member in the system
-     * @Return: EntityResponse<Member>
      */
-    update(body?: Member): import("rxjs").Observable<any>;
+    update(body?: Member): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Member>>>;
     /**
      * Delete member from the system
-     * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     /**
      * Get single member by id
-     * @Return: EntityResponse<Member>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<Member>>;
     /**
      * Find list of members by query
-     * @Return: EntitiesResponse<Member>
      */
-    find(): import("rxjs").Observable<any>;
+    find(): import("rxjs").Observable<EntitiesResponse<Member>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysMembersService>;
 }

@@ -1,8 +1,0 @@
-export class AccountIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWNjb3VudElkUmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL25nLXB1bHNlLWxpYi9zcmMvbGliL21lc3NhZ2VzL0FjY291bnRJZFJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0EsTUFBTSxPQUFPLGdCQUFnQjtJQUt4QixZQUFZLEVBQVc7UUFDcEIsSUFBSSxFQUFFLEtBQUssU0FBUyxFQUFFO1lBQUUsSUFBSSxDQUFDLEVBQUUsR0FBRyxFQUFFLENBQUM7U0FBRTtJQUMzQyxDQUFDO0NBRUoiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5leHBvcnQgY2xhc3MgQWNjb3VudElkUmVxdWVzdCB7XG4gXG4gICAgLy8gQWNjb3VudCBJZCBcbiAgICBwdWJsaWMgaWQ6IHN0cmluZztcbiBcbiAgICAgY29uc3RydWN0b3IoaWQ/OiBzdHJpbmcpIHsgXG4gICAgICAgIGlmIChpZCAhPT0gdW5kZWZpbmVkKSB7IHRoaXMuaWQgPSBpZDsgfVxuICAgIH1cblxufVxuXG5cbiJdfQ==

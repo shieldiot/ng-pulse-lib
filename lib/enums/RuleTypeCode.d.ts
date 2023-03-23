@@ -4,3 +4,4 @@ export declare enum RuleTypeCode {
     STATIC = 2,
     ANOMALY = 3
 }
+export declare function GetRuleTypeCodes(): Map<RuleTypeCode, string>;

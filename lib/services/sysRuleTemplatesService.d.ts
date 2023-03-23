@@ -1,40 +1,32 @@
-import { RestUtil } from '../../utils/rest-util';
+import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { Rule } from '../entities/Rule';
+import { RuleTemplate } from '../entities/RuleTemplate';
 import * as i0 from "@angular/core";
 export declare class SysRuleTemplatesService {
     private config;
     private rest;
     private baseUrl;
-    /**
-     * Class constructor
-     */
     constructor(config: PulseConfig, rest: RestUtil);
     /**
      * Create new rule template
-     * @Return: EntityResponse<RuleTemplate>
      */
-    create(body?: Rule): import("rxjs").Observable<any>;
+    create(body?: RuleTemplate): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<RuleTemplate>>>;
     /**
      * Update existing rule template
-     * @Return: EntityResponse<RuleTemplate>
      */
-    update(body?: Rule): import("rxjs").Observable<any>;
+    update(body?: RuleTemplate): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<RuleTemplate>>>;
     /**
      * Delete a rule template from the system
-     * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
     /**
      * Get single rule template by id
-     * @Return: EntityResponse<RuleTemplate>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id?: string): import("rxjs").Observable<EntityResponse<RuleTemplate>>;
     /**
      * Find list of rule templates by query
-     * @Return: EntitiesResponse<RuleTemplate>
      */
-    find(search?: string, sort?: string, page?: number, size?: number): import("rxjs").Observable<any>;
+    find(search?: string, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<RuleTemplate>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysRuleTemplatesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysRuleTemplatesService>;
 }

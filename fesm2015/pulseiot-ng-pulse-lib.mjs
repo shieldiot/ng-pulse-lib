@@ -2,7 +2,8 @@ import * as i0 from '@angular/core';
 import { Injectable, Inject, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
 import { HttpHeaders, HttpRequest, HttpClientModule } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 // Account role represents the role of the user in the account
@@ -263,6 +264,15 @@ var AccountStatusCode;
     // Deleted account [3] 
     AccountStatusCode[AccountStatusCode["DELETED"] = 3] = "DELETED";
 })(AccountStatusCode || (AccountStatusCode = {}));
+// Return list of AccountStatusCode values and their display names
+function GetAccountStatusCodes() {
+    let result = new Map();
+    result.set(AccountStatusCode.UNDEFINED, 'Undefined');
+    result.set(AccountStatusCode.ACTIVE, 'Active');
+    result.set(AccountStatusCode.SUSPENDED, 'Suspended');
+    result.set(AccountStatusCode.DELETED, 'Deleted');
+    return result;
+}
 
 // Account type code
 var AccountTypeCode;
@@ -278,6 +288,16 @@ var AccountTypeCode;
     // Active account for paying customers [4] 
     AccountTypeCode[AccountTypeCode["CUSTOMER"] = 4] = "CUSTOMER";
 })(AccountTypeCode || (AccountTypeCode = {}));
+// Return list of AccountTypeCode values and their display names
+function GetAccountTypeCodes() {
+    let result = new Map();
+    result.set(AccountTypeCode.UNDEFINED, 'Undefined');
+    result.set(AccountTypeCode.DEMO, 'Demo');
+    result.set(AccountTypeCode.TRIAL, 'Trial');
+    result.set(AccountTypeCode.PARTNER, 'Partner');
+    result.set(AccountTypeCode.CUSTOMER, 'Customer');
+    return result;
+}
 
 // Device action code
 var DeviceActionCode;
@@ -291,6 +311,15 @@ var DeviceActionCode;
     // Throttle device traffic [3] 
     DeviceActionCode[DeviceActionCode["THROTTLE"] = 3] = "THROTTLE";
 })(DeviceActionCode || (DeviceActionCode = {}));
+// Return list of DeviceActionCode values and their display names
+function GetDeviceActionCodes() {
+    let result = new Map();
+    result.set(DeviceActionCode.UNDEFINED, 'Undefined');
+    result.set(DeviceActionCode.REDIRECT, 'Redirect');
+    result.set(DeviceActionCode.BLOCK, 'Block');
+    result.set(DeviceActionCode.THROTTLE, 'Throttle');
+    return result;
+}
 
 // Device status code
 var DeviceStatusCode;
@@ -306,6 +335,16 @@ var DeviceStatusCode;
     // Suspended device (about to be deleted) [4] 
     DeviceStatusCode[DeviceStatusCode["SUSPENDED"] = 4] = "SUSPENDED";
 })(DeviceStatusCode || (DeviceStatusCode = {}));
+// Return list of DeviceStatusCode values and their display names
+function GetDeviceStatusCodes() {
+    let result = new Map();
+    result.set(DeviceStatusCode.UNDEFINED, 'Undefined');
+    result.set(DeviceStatusCode.PENDING, 'Pending');
+    result.set(DeviceStatusCode.ACTIVE, 'Active');
+    result.set(DeviceStatusCode.INACTIVE, 'Inactive');
+    result.set(DeviceStatusCode.SUSPENDED, 'Suspended');
+    return result;
+}
 
 // Device type code
 var DeviceTypeCode;
@@ -337,6 +376,24 @@ var DeviceTypeCode;
     // Gateway [12] 
     DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 12] = "GATEWAY";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
+// Return list of DeviceTypeCode values and their display names
+function GetDeviceTypeCodes() {
+    let result = new Map();
+    result.set(DeviceTypeCode.UNDEFINED, 'Undefined');
+    result.set(DeviceTypeCode.CONTROLLER, 'Controller');
+    result.set(DeviceTypeCode.METER, 'Meter');
+    result.set(DeviceTypeCode.SENSOR, 'Sensor');
+    result.set(DeviceTypeCode.CAMERA, 'Camera');
+    result.set(DeviceTypeCode.POS, 'Pos');
+    result.set(DeviceTypeCode.PUMP, 'Pump');
+    result.set(DeviceTypeCode.CHARGING_STATION, 'Charging Station');
+    result.set(DeviceTypeCode.LIGHTNING, 'Lightning');
+    result.set(DeviceTypeCode.TEMPERATURE_SENSOR, 'Temperature Sensor');
+    result.set(DeviceTypeCode.AIR_QUALITY_SENSOR, 'Air Quality Sensor');
+    result.set(DeviceTypeCode.VALVE, 'Valve');
+    result.set(DeviceTypeCode.GATEWAY, 'Gateway');
+    return result;
+}
 
 // Event category code
 var EventCategoryCode;
@@ -348,6 +405,14 @@ var EventCategoryCode;
     // Operational event [2] 
     EventCategoryCode[EventCategoryCode["OPERATIONS"] = 2] = "OPERATIONS";
 })(EventCategoryCode || (EventCategoryCode = {}));
+// Return list of EventCategoryCode values and their display names
+function GetEventCategoryCodes() {
+    let result = new Map();
+    result.set(EventCategoryCode.UNDEFINED, 'Undefined');
+    result.set(EventCategoryCode.SECURITY, 'Security');
+    result.set(EventCategoryCode.OPERATIONS, 'Operations');
+    return result;
+}
 
 // Event workflow status code
 var EventStatusCode;
@@ -363,6 +428,16 @@ var EventStatusCode;
     // Closed event (tagged as False event) [4] 
     EventStatusCode[EventStatusCode["CLOSED_FALSE"] = 4] = "CLOSED_FALSE";
 })(EventStatusCode || (EventStatusCode = {}));
+// Return list of EventStatusCode values and their display names
+function GetEventStatusCodes() {
+    let result = new Map();
+    result.set(EventStatusCode.UNDEFINED, 'Undefined');
+    result.set(EventStatusCode.NEW, 'New');
+    result.set(EventStatusCode.OPEN, 'Open');
+    result.set(EventStatusCode.CLOSED_TRUE, 'Closed True');
+    result.set(EventStatusCode.CLOSED_FALSE, 'Closed False');
+    return result;
+}
 
 // Event type code
 var EventTypeCode;
@@ -402,6 +477,28 @@ var EventTypeCode;
     // Suspicious IP [16] 
     EventTypeCode[EventTypeCode["SUSPICIOUS_IP"] = 16] = "SUSPICIOUS_IP";
 })(EventTypeCode || (EventTypeCode = {}));
+// Return list of EventTypeCode values and their display names
+function GetEventTypeCodes() {
+    let result = new Map();
+    result.set(EventTypeCode.UNDEFINED, 'Undefined');
+    result.set(EventTypeCode.DEVICE_TAKEOVER, 'Device Takeover');
+    result.set(EventTypeCode.DDOS, 'Ddos');
+    result.set(EventTypeCode.UNKNOWN_MALWARE, 'Unknown Malware');
+    result.set(EventTypeCode.MAN_IN_THE_MIDDLE, 'Man In The Middle');
+    result.set(EventTypeCode.DATA_THEFT, 'Data Theft');
+    result.set(EventTypeCode.PORT_SCANNING, 'Port Scanning');
+    result.set(EventTypeCode.ABNORMAL_DOWNLOAD, 'Abnormal Download');
+    result.set(EventTypeCode.ABNORMAL_INCOMING_CONNECTION, 'Abnormal Incoming Connection');
+    result.set(EventTypeCode.UNSUCCESSFUL_CONNECTION_ATTEMPTS, 'Unsuccessful Connection Attempts');
+    result.set(EventTypeCode.HIGH_VOLUME_TRANSIT, 'High Volume Transit');
+    result.set(EventTypeCode.DEVICE_LEVEL_ATTACK, 'Device Level Attack');
+    result.set(EventTypeCode.REPLAY_ATTACK, 'Replay Attack');
+    result.set(EventTypeCode.DEVICE_TAKEOVER_ATTEMPT, 'Device Takeover Attempt');
+    result.set(EventTypeCode.UNKNOWN_OPERATION, 'Unknown Operation');
+    result.set(EventTypeCode.CRYPTO_MINING, 'Crypto Mining');
+    result.set(EventTypeCode.SUSPICIOUS_IP, 'Suspicious Ip');
+    return result;
+}
 
 // Member role code (represent role of user in the account)
 var MemberRoleCode;
@@ -415,6 +512,15 @@ var MemberRoleCode;
     // Viewer has read-only permissions [3] 
     MemberRoleCode[MemberRoleCode["VIEWER"] = 3] = "VIEWER";
 })(MemberRoleCode || (MemberRoleCode = {}));
+// Return list of MemberRoleCode values and their display names
+function GetMemberRoleCodes() {
+    let result = new Map();
+    result.set(MemberRoleCode.UNDEFINED, 'Undefined');
+    result.set(MemberRoleCode.ADMIN, 'Admin');
+    result.set(MemberRoleCode.OPERATOR, 'Operator');
+    result.set(MemberRoleCode.VIEWER, 'Viewer');
+    return result;
+}
 
 // RuleTypeCode represents the sources (engines) of rules
 var RuleTypeCode;
@@ -428,6 +534,15 @@ var RuleTypeCode;
     // Rule based on anomaly detection and classification [3] 
     RuleTypeCode[RuleTypeCode["ANOMALY"] = 3] = "ANOMALY";
 })(RuleTypeCode || (RuleTypeCode = {}));
+// Return list of RuleTypeCode values and their display names
+function GetRuleTypeCodes() {
+    let result = new Map();
+    result.set(RuleTypeCode.UNDEFINED, 'Undefined');
+    result.set(RuleTypeCode.SUSPICIOUS_IP, 'Suspicious Ip');
+    result.set(RuleTypeCode.STATIC, 'Static');
+    result.set(RuleTypeCode.ANOMALY, 'Anomaly');
+    return result;
+}
 
 // Severity type (level) code
 var SeverityTypeCode;
@@ -451,6 +566,20 @@ var SeverityTypeCode;
     // Critical severity [8] 
     SeverityTypeCode[SeverityTypeCode["CRITICAL"] = 8] = "CRITICAL";
 })(SeverityTypeCode || (SeverityTypeCode = {}));
+// Return list of SeverityTypeCode values and their display names
+function GetSeverityTypeCodes() {
+    let result = new Map();
+    result.set(SeverityTypeCode.UNDEFINED, 'Undefined');
+    result.set(SeverityTypeCode.NO_EFFECT, 'No Effect');
+    result.set(SeverityTypeCode.NOTIFICATION, 'Notification');
+    result.set(SeverityTypeCode.LOWEST, 'Lowest');
+    result.set(SeverityTypeCode.LOW, 'Low');
+    result.set(SeverityTypeCode.MEDIUM, 'Medium');
+    result.set(SeverityTypeCode.HIGH, 'High');
+    result.set(SeverityTypeCode.HIGHEST, 'Highest');
+    result.set(SeverityTypeCode.CRITICAL, 'Critical');
+    return result;
+}
 
 // User status code
 var UserStatusCode;
@@ -466,6 +595,16 @@ var UserStatusCode;
     // Suspended user (about to be deleted) [8] 
     UserStatusCode[UserStatusCode["SUSPENDED"] = 4] = "SUSPENDED";
 })(UserStatusCode || (UserStatusCode = {}));
+// Return list of UserStatusCode values and their display names
+function GetUserStatusCodes() {
+    let result = new Map();
+    result.set(UserStatusCode.UNDEFINED, 'Undefined');
+    result.set(UserStatusCode.PENDING, 'Pending');
+    result.set(UserStatusCode.ACTIVE, 'Active');
+    result.set(UserStatusCode.BLOCKED, 'Blocked');
+    result.set(UserStatusCode.SUSPENDED, 'Suspended');
+    return result;
+}
 
 // User type code
 var UserTypeCode;
@@ -481,604 +620,86 @@ var UserTypeCode;
     // Account service - to be used by other systems to perform actions using the API (can't login as a user to the portal)' [5]` 
     UserTypeCode[UserTypeCode["SERVICE"] = 5] = "SERVICE";
 })(UserTypeCode || (UserTypeCode = {}));
-
-class AccountIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
+// Return list of UserTypeCode values and their display names
+function GetUserTypeCodes() {
+    let result = new Map();
+    result.set(UserTypeCode.UNDEFINED, 'Undefined');
+    result.set(UserTypeCode.SYSADMIN, 'Sysadmin');
+    result.set(UserTypeCode.SUPPORT, 'Support');
+    result.set(UserTypeCode.USER, 'User');
+    result.set(UserTypeCode.SERVICE, 'Service');
+    return result;
 }
 
-class AccountsServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class AccountsServiceFindRequest {
-    constructor(search, type, status, sort, page, size) {
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (type !== undefined) {
-            this.type = type;
-        }
-        if (status !== undefined) {
-            this.status = status;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class AccountsServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
+// BaseRestResponse is a common structure for all response types
+class BaseRestResponse {
+    constructor() {
+        // Error code (0 for success)
+        this.code = 0;
+        // Error message
+        this.error = '';
     }
 }
 
 // ActionResponse message is returned for any action on entity with no return data (e.d. delete)
-class ActionResponse {
-    constructor(code, error, key, data) {
-        if (code !== undefined) {
-            this.code = code;
-        }
-        if (error !== undefined) {
-            this.error = error;
-        }
-        if (key !== undefined) {
-            this.key = key;
-        }
-        if (data !== undefined) {
-            this.data = data;
-        }
-    }
-}
-
-class DeviceIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class DevicesServiceActionRequest {
-    constructor(id, action) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-        if (action !== undefined) {
-            this.action = action;
-        }
-    }
-}
-
-class DevicesServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class DevicesServiceFindRequest {
-    constructor(streamId, search, type, status, sort, page, size) {
-        if (streamId !== undefined) {
-            this.streamId = streamId;
-        }
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (type !== undefined) {
-            this.type = type;
-        }
-        if (status !== undefined) {
-            this.status = status;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class DevicesServiceTagRequest {
-    constructor(id, tag) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-        if (tag !== undefined) {
-            this.tag = tag;
-        }
-    }
-}
-
-class DevicesServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class EmptyRequest {
+class ActionResponse extends BaseRestResponse {
     constructor() {
-    }
-}
-
-class EmptyResponse {
-    constructor() {
+        super(...arguments);
+        // Entity key
+        this.key = '';
+        // Additional data
+        this.data = '';
     }
 }
 
 // EntitiesResponse message is returned for any action returning multiple entities
-class EntitiesResponse {
-    constructor(code, error, page, size, pages, total) {
-        if (code !== undefined) {
-            this.code = code;
-        }
-        if (error !== undefined) {
-            this.error = error;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-        if (pages !== undefined) {
-            this.pages = pages;
-        }
-        if (total !== undefined) {
-            this.total = total;
-        }
+class EntityResponse extends BaseRestResponse {
+    constructor() {
+        super(...arguments);
+        // Current page (Bulk) number
+        this.page = 0;
+        // Size of page (items in bulk)
+        this.size = 0;
+        // Total number of pages
+        this.pages = 0;
+        // Total number of items in the query
+        this.total = 0;
     }
 }
 
-class EntitiesResponseOfAccount extends EntitiesResponse {
-}
-
-class EntitiesResponseOfDevice extends EntitiesResponse {
-}
-
-class EntitiesResponseOfEvent extends EntitiesResponse {
-}
-
-class EntitiesResponseOfMember extends EntitiesResponse {
-}
-
-class EntitiesResponseOfRule extends EntitiesResponse {
-}
-
-class EntitiesResponseOfRuleTemplate extends EntitiesResponse {
-}
-
-class EntitiesResponseOfStream extends EntitiesResponse {
-}
-
-class EntitiesResponseOfUser extends EntitiesResponse {
-}
-
-// EntityResponse message is returned for any create/update action on entity
-class EntityResponse {
-    constructor(code, error) {
-        if (code !== undefined) {
-            this.code = code;
-        }
-        if (error !== undefined) {
-            this.error = error;
-        }
+// EntitiesResponse message is returned for any action returning multiple entities
+class EntitiesResponse extends BaseRestResponse {
+    constructor() {
+        super(...arguments);
+        // Current page (Bulk) number
+        this.page = 0;
+        // Size of page (items in bulk)
+        this.size = 0;
+        // Total number of pages
+        this.pages = 0;
+        // Total number of items in the query
+        this.total = 0;
+        // List of entities
+        this.list = [];
     }
 }
 
-class EntityResponseOfAccount extends EntityResponse {
-}
-
-class EntityResponseOfDevice extends EntityResponse {
-}
-
-class EntityResponseOfEvent extends EntityResponse {
-}
-
-class EntityResponseOfMember extends EntityResponse {
-}
-
-class EntityResponseOfRule extends EntityResponse {
-}
-
-class EntityResponseOfRuleTemplate extends EntityResponse {
-}
-
-class EntityResponseOfStream extends EntityResponse {
-}
-
-class EntityResponseOfUser extends EntityResponse {
-}
-
-class EntityResponseOfUserMemberships extends EntityResponse {
-}
-
-class EventIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class EventsServiceFindRequest {
-    constructor(streamId, deviceId, from, to, type, severity, sort, page, size) {
-        if (streamId !== undefined) {
-            this.streamId = streamId;
-        }
-        if (deviceId !== undefined) {
-            this.deviceId = deviceId;
-        }
-        if (from !== undefined) {
-            this.from = from;
-        }
-        if (to !== undefined) {
-            this.to = to;
-        }
-        if (type !== undefined) {
-            this.type = type;
-        }
-        if (severity !== undefined) {
-            this.severity = severity;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class EventsServiceStatusRequest {
-    constructor(id, status) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-        if (status !== undefined) {
-            this.status = status;
-        }
-    }
-}
-
-class MemberIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class MembersServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class MembersServiceFindRequest {
-    constructor(accountId, userId, role, sort, page, size) {
-        if (accountId !== undefined) {
-            this.accountId = accountId;
-        }
-        if (userId !== undefined) {
-            this.userId = userId;
-        }
-        if (role !== undefined) {
-            this.role = role;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class MembersServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class RuleIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class RuleTemplateIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class RuleTemplatesServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class RuleTemplatesServiceFindRequest {
-    constructor(search, sort, page, size) {
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class RuleTemplatesServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class RulesServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class RulesServiceFindRequest {
-    constructor(accountId, streamId, search, sort, page, size) {
-        if (accountId !== undefined) {
-            this.accountId = accountId;
-        }
-        if (streamId !== undefined) {
-            this.streamId = streamId;
-        }
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class RulesServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class StreamIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-// Response of byte array
-class StreamResponse {
-    constructor(content) {
-        if (content !== undefined) {
-            this.content = content;
-        }
-    }
-}
-
-class StreamsServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class StreamsServiceFindRequest {
-    constructor(accountId, search, sort, page, size) {
-        if (accountId !== undefined) {
-            this.accountId = accountId;
-        }
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class StreamsServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class UserIdRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class UserServiceAuthorizeRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class UserServiceSetAccountRequest {
-    constructor(id) {
-        if (id !== undefined) {
-            this.id = id;
-        }
-    }
-}
-
-class UsersServiceCreateMembershipsRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class UsersServiceCreateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-class UsersServiceFindRequest {
-    constructor(search, type, status, sort, page, size) {
-        if (search !== undefined) {
-            this.search = search;
-        }
-        if (type !== undefined) {
-            this.type = type;
-        }
-        if (status !== undefined) {
-            this.status = status;
-        }
-        if (sort !== undefined) {
-            this.sort = sort;
-        }
-        if (page !== undefined) {
-            this.page = page;
-        }
-        if (size !== undefined) {
-            this.size = size;
-        }
-    }
-}
-
-class UsersServiceUpdateRequest {
-    constructor(body) {
-        if (body !== undefined) {
-            this.body = body;
-        }
-    }
-}
-
-// @WebSocketMessage Message header for all web socket messages
-class WebSocketMessageHeader {
-    constructor(opcode, version, messageId, correlationId, sessionId) {
-        if (opcode !== undefined) {
-            this.op = opcode;
-        }
-        if (version !== undefined) {
-            this.ver = version;
-        }
-        if (messageId !== undefined) {
-            this.id = messageId;
-        }
-        if (correlationId !== undefined) {
-            this.cid = correlationId;
-        }
-        if (sessionId !== undefined) {
-            this.sid = sessionId;
-        }
-    }
-}
-
-// Access token key in the local storage
-const tokenKey = 'pulseAccessToken';
-const loginKey = 'pulseLoginData';
-function getToken() {
-    return localStorage.getItem(tokenKey);
-}
-function setToken(token) {
-    localStorage.setItem(tokenKey, token);
-}
-function removeToken() {
-    localStorage.removeItem(tokenKey);
-    localStorage.removeItem(loginKey);
-}
-
-const headers = new HttpHeaders();
-headers.set('Content-Type', 'application/json');
-headers.set('Cache-Control', 'no-cache, no-store');
-/**
- * Utility class for all REST services with common functions
- */
+const httpOptions = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, X-API-KEY, X-ACCESS-TOKEN, X-TIMEZONE, accept, origin, Cache-Control, X-Requested-With, Authorization, Content-Disposition, Content-Filename',
+        'Access-Control-Exposed-Headers': 'X-API-KEY, X-ACCESS-TOKEN, X-TIMEZONE, Content-Disposition, Content-Filename',
+    })
+};
+// Utility class for all REST services with common functions
 class RestUtil {
-    // Set headers
-    // private headers = new HttpHeaders().set('Content-Type', 'application/json');
-    /**
-     * Constructor with injected authentication service
-     */
+    // Constructor with injected authentication service
     constructor(http) {
         this.http = http;
     }
-    /**
-     * Upload is HTTP POST action but the body is File object
-     */
+    // Upload is HTTP POST action but the body is File object
     upload(file, url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         const formData = new FormData();
@@ -1089,9 +710,7 @@ class RestUtil {
         });
         return this.http.request(req);
     }
-    /**
-     * Download is HTTP GET action but the content is blob
-     */
+    // Download is HTTP GET action but the content is blob
     download(fileName, url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         let downloadLink = fileName;
@@ -1122,79 +741,66 @@ class RestUtil {
             headers: new HttpHeaders({ 'Content-Type': contentType })
         });
     }
-    /**
-     * HTTP GET action
-     */
+    // HTTP GET action
     get(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .get(resourceUrl, { headers: headers, observe: 'response' })
-            .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
+            .get(resourceUrl, httpOptions)
+            .pipe(
+        //map((res: any) => this.processResponse(res)),
+        catchError(this.handleError));
     }
-    /**
-     * HTTP POST action
-     */
+    // HTTP POST action
     post(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .post(resourceUrl, body, { headers: headers, observe: 'response' })
-            .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
+            .post(resourceUrl, body, httpOptions)
+            .pipe(
+        //map((res: any) => this.processResponse(res)),
+        catchError(this.handleError));
     }
-    /**
-     * HTTP PUT action
-     */
+    // HTTP PUT action
     put(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .put(resourceUrl, body, { headers: headers, observe: 'response' })
-            .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
+            .put(resourceUrl, body, httpOptions)
+            .pipe(
+        //map((res: Observable<T>) => this.processResponse(res)),
+        catchError(this.handleError));
     }
-    /**
-     * HTTP DELETE action
-     */
+    // HTTP DELETE action
     delete(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         return this.http
-            .delete(resourceUrl, { headers: headers, observe: 'response' })
-            .pipe(map((res) => this.processResponse(res)), catchError(this.handleError));
+            .delete(resourceUrl, httpOptions)
+            .pipe(
+        //map((res: any) => this.processResponse(res)),
+        catchError(this.handleError));
     }
-    /**
-     * Construct URL with parameters
-     */
+    // Construct URL with parameters
     buildUrl(url, ...params) {
         return (params === null) ? url : (params.length === 0) ? url : `${url}${params && params.length > 0 ? '?' + params.join('&') : ''}`;
     }
-    /**
-     * Process the response, extract and refresh access token and return the body
-     */
+    // Process the response, if code is not 0, throw an error
     processResponse(response) {
-        if (response.status === 401) {
-            removeToken();
-            headers.set('X-ACCESS-TOKEN', '');
-            throw new Error('Access denied, reset token: ' + response.status);
+        // If response code is not 0, throw an error
+        if (response.code !== 0) {
+            throw { code: response.code, message: response.error };
         }
-        else if (response.status > 400) {
-            throw new Error('HTTP status error: ' + response.status);
-        }
-        // Get access token from header and update authentication service
-        const accessToken = response.headers.get('X-ACCESS-TOKEN');
-        if ((accessToken !== null) && (accessToken.length > 0)) {
-            setToken(accessToken);
-            headers.set('X-ACCESS-TOKEN', accessToken);
-        }
-        if (response.body && response.body.code && response.body.code !== 0) {
-            throw { code: response.body.code, message: response.body.error };
-        }
-        return response.body;
     }
-    /**
-     * Error handling
-     */
+    // Handle error
     handleError(error) {
-        if (error.code) {
-            return Promise.reject(error);
+        if (error.status === 0) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error);
         }
-        return Promise.reject(error.message || error);
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong.
+            console.error(`Backend returned code ${error.status}, body was: `, error.error);
+        }
+        // Return an observable with a user-facing error message.
+        return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 }
 RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -1202,31 +808,23 @@ RestUtil.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "1
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: RestUtil, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
-/**
- * Set API Key in the global headers object
- * @param apiKey The API Key string
- */
-function SetApiKey(apiKey) {
-    headers.set('X-API-KEY', apiKey);
-}
-/**
- * Set Access Token in the global headers object
- * @param token The Token string
- */
-function SetToken(token) {
-    headers.set('X-ACCESS-TOKEN', token);
-}
 
 class PulseConfig {
+    constructor() {
+        this.api = '';
+    }
 }
+PulseConfig.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: PulseConfig, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+PulseConfig.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: PulseConfig });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: PulseConfig, decorators: [{
+            type: Injectable
+        }] });
 
 // List of device related actions for the operator 
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class DevicesService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1236,38 +834,33 @@ class DevicesService {
     }
     /**
      * Create new device
-     * @Return: EntityResponse<Device>
      */
     create() {
         return this.rest.post(`${this.baseUrl}`, '');
     }
     /**
      * Update existing device in the system
-     * @Return: EntityResponse<Device>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete device from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single device by id
-     * @Return: EntityResponse<Device>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of devices by query
-     * @Return: EntitiesResponse<Device>
      */
     find(streamId, search, type, status, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
         }
@@ -1293,21 +886,18 @@ class DevicesService {
     }
     /**
      * Add tag to a device
-     * @Return: EntityResponse<Device>
      */
     addTag(id, tag) {
         return this.rest.post(`${this.baseUrl}/${id}/tags/${tag}`, '');
     }
     /**
      * Delete a tag from the device
-     * @Return: EntityResponse<Device>
      */
     deleteTag(id, tag) {
         return this.rest.delete(`${this.baseUrl}/${id}/tags/${tag}`);
     }
     /**
      * Apply action on a device
-     * @Return: ActionResponse
      */
     applyAction(id, action) {
         return this.rest.post(`${this.baseUrl}/${id}/action/${action}`, '');
@@ -1328,9 +918,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class EventsService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1340,17 +928,15 @@ class EventsService {
     }
     /**
      * Get single event by id
-     * @Return: EntityResponse<Event>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of events by query
-     * @Return: EntitiesResponse<Event>
      */
     find(streamId, deviceId, from, to, type, severity, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
         }
@@ -1382,7 +968,6 @@ class EventsService {
     }
     /**
      * Set event status
-     * @Return: ActionResponse
      */
     applyAction(id, status) {
         return this.rest.post(`${this.baseUrl}/${id}/status/${status}`, '');
@@ -1403,9 +988,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysAccountsService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1415,38 +998,33 @@ class SysAccountsService {
     }
     /**
      * Create new account
-     * @Return: EntityResponse<Account>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing account in the system
-     * @Return: EntityResponse<Account>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete account from the system and all its related content
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single account by id
-     * @Return: EntityResponse<Account>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of accounts by query
-     * @Return: EntitiesResponse<Account>
      */
     find(search, type, status, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (search != null) {
             params.push(`search=${search}`);
         }
@@ -1483,9 +1061,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysMembersService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1495,35 +1071,30 @@ class SysMembersService {
     }
     /**
      * Create new member
-     * @Return: EntityResponse<Member>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing member in the system
-     * @Return: EntityResponse<Member>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete member from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single member by id
-     * @Return: EntityResponse<Member>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of members by query
-     * @Return: EntitiesResponse<Member>
      */
     find() {
         return this.rest.get(`${this.baseUrl}`);
@@ -1544,9 +1115,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysRuleTemplatesService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1556,38 +1125,33 @@ class SysRuleTemplatesService {
     }
     /**
      * Create new rule template
-     * @Return: EntityResponse<RuleTemplate>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing rule template
-     * @Return: EntityResponse<RuleTemplate>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete a rule template from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single rule template by id
-     * @Return: EntityResponse<RuleTemplate>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of rule templates by query
-     * @Return: EntitiesResponse<RuleTemplate>
      */
     find(search, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (search != null) {
             params.push(`search=${search}`);
         }
@@ -1618,9 +1182,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysRulesService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1630,38 +1192,33 @@ class SysRulesService {
     }
     /**
      * Create new rule
-     * @Return: EntityResponse<Rule>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing rule in the system
-     * @Return: EntityResponse<Rule>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete a rule from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single rule by id
-     * @Return: EntityResponse<Rule>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of rules by query
-     * @Return: EntitiesResponse<Rule>
      */
     find(accountId, streamId, search, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (accountId != null) {
             params.push(`accountId=${accountId}`);
         }
@@ -1698,9 +1255,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysStreamsService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1710,38 +1265,33 @@ class SysStreamsService {
     }
     /**
      * Create new stream
-     * @Return: EntityResponse<Stream>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing stream in the system
-     * @Return: EntityResponse<Stream>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete a stream from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single stream by id
-     * @Return: EntityResponse<Stream>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of streams by query
-     * @Return: EntitiesResponse<Stream>
      */
     find(accountId, search, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (accountId != null) {
             params.push(`accountId=${accountId}`);
         }
@@ -1775,9 +1325,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class SysUsersService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1787,38 +1335,33 @@ class SysUsersService {
     }
     /**
      * Create new user
-     * @Return: EntityResponse<User>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update existing user in the system
-     * @Return: EntityResponse<User>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete a user from the system
-     * @Return: ActionResponse
      */
     delete(id) {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
      * Get single user by id
-     * @Return: EntityResponse<User>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find list of users by query
-     * @Return: EntitiesResponse<User>
      */
     find(search, type, status, sort, page, size) {
-        const params = new Array();
+        const params = [];
         if (search != null) {
             params.push(`search=${search}`);
         }
@@ -1841,7 +1384,6 @@ class SysUsersService {
     }
     /**
      * Create new user with all its accounts memberships
-     * @Return: EntityResponse<UserMemberships>
      */
     createMembership(body) {
         return this.rest.post(`${this.baseUrl}/memberships`, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1862,9 +1404,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
 class UserService {
-    /**
-     * Class constructor
-     */
+    // Class constructor
     constructor(config, rest) {
         this.config = config;
         this.rest = rest;
@@ -1875,7 +1415,6 @@ class UserService {
     /**
      * Authorize user, verify user exists in the system (user was already authenticated by OAuth provider)
      * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-     * @Return: ActionResponse
      */
     authorize(body) {
         return this.rest.post(`${this.baseUrl}/authorize`, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1883,21 +1422,18 @@ class UserService {
     /**
      * Refresh token (set new expiration time) and associate with new account if required
      * The response includes the account details and the newly refreshed token in the HTTP header X-ACCESS-TOKEN
-     * @Return: EntityResponse<Account>
      */
     setAccount(id) {
         return this.rest.post(`${this.baseUrl}/set-account/${id}`, '');
     }
     /**
      * Get the user's current account details
-     * @Return: EntityResponse<Account>
      */
     getAccount() {
         return this.rest.get(`${this.baseUrl}/get-account`);
     }
     /**
      * Get all the user memberships (all accounts that the current user has access to)
-     * @Return: EntityResponse<UserMemberships>
      */
     getMemberships() {
         return this.rest.get(`${this.baseUrl}/memberships`);
@@ -1954,5 +1490,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountIdRequest, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, AccountsServiceCreateRequest, AccountsServiceFindRequest, AccountsServiceUpdateRequest, ActionResponse, AuditLog, BaseEntity, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceIdRequest, DeviceStatusCode, DeviceTypeCode, DevicesService, DevicesServiceActionRequest, DevicesServiceCreateRequest, DevicesServiceFindRequest, DevicesServiceTagRequest, DevicesServiceUpdateRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfDevice, EntitiesResponseOfEvent, EntitiesResponseOfMember, EntitiesResponseOfRule, EntitiesResponseOfRuleTemplate, EntitiesResponseOfStream, EntitiesResponseOfUser, EntityResponse, EntityResponseOfAccount, EntityResponseOfDevice, EntityResponseOfEvent, EntityResponseOfMember, EntityResponseOfRule, EntityResponseOfRuleTemplate, EntityResponseOfStream, EntityResponseOfUser, EntityResponseOfUserMemberships, Event, EventCategoryCode, EventIdRequest, EventStatusCode, EventTypeCode, EventsService, EventsServiceFindRequest, EventsServiceStatusRequest, Indicator, LoginParams, Member, MemberIdRequest, MemberRoleCode, MembersServiceCreateRequest, MembersServiceFindRequest, MembersServiceUpdateRequest, PulseConfig, PulseLibModule, RestUtil, Rule, RuleIdRequest, RuleTemplate, RuleTemplateIdRequest, RuleTemplatesServiceCreateRequest, RuleTemplatesServiceFindRequest, RuleTemplatesServiceUpdateRequest, RuleTypeCode, RulesServiceCreateRequest, RulesServiceFindRequest, RulesServiceUpdateRequest, Services, SessionRecord, SetApiKey, SetToken, SeverityTypeCode, Shieldex, Stream, StreamConfig, StreamIdRequest, StreamResponse, StreamsServiceCreateRequest, StreamsServiceFindRequest, StreamsServiceUpdateRequest, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserIdRequest, UserMembership, UserMemberships, UserService, UserServiceAuthorizeRequest, UserServiceSetAccountRequest, UserStatusCode, UserTypeCode, UsersServiceCreateMembershipsRequest, UsersServiceCreateRequest, UsersServiceFindRequest, UsersServiceUpdateRequest, WebSocketMessageHeader, ZScore, getToken, removeToken, setToken };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
