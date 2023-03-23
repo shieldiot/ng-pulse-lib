@@ -1,7 +1,8 @@
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
+import { Event } from '../entities/Event';
 import { BaseEntity } from '../entities/BaseEntity';
-export declare class Device extends BaseEntity {
+export declare class DeviceWithEvents extends BaseEntity {
     accountId: string;
     streamId: string;
     name: string;
@@ -16,4 +17,5 @@ export declare class Device extends BaseEntity {
     score: number;
     tags: string[];
     eventCount: number;
+    events: Event[];
 }

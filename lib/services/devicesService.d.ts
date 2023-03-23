@@ -1,9 +1,10 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
+import { DeviceActionCode } from '../enums/DeviceActionCode';
+import { DeviceWithEvents } from '../entities/DeviceWithEvents';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
@@ -42,6 +43,10 @@ export declare class DevicesService {
      * Apply action on a device
      */
     applyAction(id?: string, action?: DeviceActionCode): import("rxjs").Observable<ActionResponse>;
+    /**
+     * Get top 10 devices by their score
+     */
+    getTop(): import("rxjs").Observable<EntitiesResponse<DeviceWithEvents>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DevicesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DevicesService>;
 }
