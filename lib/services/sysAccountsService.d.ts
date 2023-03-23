@@ -1,8 +1,8 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { Account } from '../entities/Account';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
+import { AccountStatusCode } from '../enums/AccountStatusCode';
 import * as i0 from "@angular/core";
 export declare class SysAccountsService {
     private config;
@@ -12,15 +12,15 @@ export declare class SysAccountsService {
     /**
      * Create new account
      */
-    create(body?: Account): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Account>>>;
+    create(body?: Account): import("rxjs").Observable<EntityResponse<Account>>;
     /**
      * Update existing account in the system
      */
-    update(body?: Account): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Account>>>;
+    update(body?: Account): import("rxjs").Observable<EntityResponse<Account>>;
     /**
      * Delete account from the system and all its related content
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single account by id
      */

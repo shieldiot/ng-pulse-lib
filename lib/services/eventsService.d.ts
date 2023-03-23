@@ -1,9 +1,9 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
+import { Event } from '../entities/Event';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
 import { EventStatusCode } from '../enums/EventStatusCode';
-import { Event } from '../entities/Event';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
@@ -21,7 +21,7 @@ export declare class EventsService {
     /**
      * Set event status
      */
-    applyAction(id?: string, status?: EventStatusCode): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    applyAction(id?: string, status?: EventStatusCode): import("rxjs").Observable<ActionResponse>;
     static ɵfac: i0.ɵɵFactoryDeclaration<EventsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<EventsService>;
 }

@@ -2,8 +2,6 @@ import * as i0 from '@angular/core';
 import { Injectable, Inject, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
 import { HttpHeaders, HttpRequest, HttpClientModule } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 // Account role represents the role of the user in the account
@@ -744,63 +742,26 @@ class RestUtil {
     // HTTP GET action
     get(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
-        return this.http
-            .get(resourceUrl, httpOptions)
-            .pipe(
-        //map((res: any) => this.processResponse(res)),
-        catchError(this.handleError));
+        return this.http.get(resourceUrl, httpOptions);
     }
     // HTTP POST action
     post(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
-        return this.http
-            .post(resourceUrl, body, httpOptions)
-            .pipe(
-        //map((res: any) => this.processResponse(res)),
-        catchError(this.handleError));
+        return this.http.post(resourceUrl, body, httpOptions);
     }
     // HTTP PUT action
     put(url, body, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
-        return this.http
-            .put(resourceUrl, body, httpOptions)
-            .pipe(
-        //map((res: Observable<T>) => this.processResponse(res)),
-        catchError(this.handleError));
+        return this.http.put(resourceUrl, body, httpOptions);
     }
     // HTTP DELETE action
     delete(url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
-        return this.http
-            .delete(resourceUrl, httpOptions)
-            .pipe(
-        //map((res: any) => this.processResponse(res)),
-        catchError(this.handleError));
+        return this.http.delete(resourceUrl, httpOptions);
     }
     // Construct URL with parameters
     buildUrl(url, ...params) {
         return (params === null) ? url : (params.length === 0) ? url : `${url}${params && params.length > 0 ? '?' + params.join('&') : ''}`;
-    }
-    // Process the response, if code is not 0, throw an error
-    processResponse(response) {
-        // If response code is not 0, throw an error
-        if (response.code !== 0) {
-            throw { code: response.code, message: response.error };
-        }
-    }
-    // Handle error
-    handleError(error) {
-        if (error.status === 0) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error);
-        }
-        else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
-            console.error(`Backend returned code ${error.status}, body was: `, error.error);
-        }
-        // Return an observable with a user-facing error message.
-        return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 }
 RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });

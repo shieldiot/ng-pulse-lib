@@ -10,15 +10,15 @@ export declare class SysRulesService {
     /**
      * Create new rule
      */
-    create(body?: Rule): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Rule>>>;
+    create(body?: Rule): import("rxjs").Observable<EntityResponse<Rule>>;
     /**
      * Update existing rule in the system
      */
-    update(body?: Rule): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Rule>>>;
+    update(body?: Rule): import("rxjs").Observable<EntityResponse<Rule>>;
     /**
      * Delete a rule from the system
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single rule by id
      */

@@ -13,12 +13,12 @@ export declare class UserService {
      * Authorize user, verify user exists in the system (user was already authenticated by OAuth provider)
      * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
      */
-    authorize(body?: LoginParams): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    authorize(body?: LoginParams): import("rxjs").Observable<ActionResponse>;
     /**
      * Refresh token (set new expiration time) and associate with new account if required
      * The response includes the account details and the newly refreshed token in the HTTP header X-ACCESS-TOKEN
      */
-    setAccount(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Account>>>;
+    setAccount(id?: string): import("rxjs").Observable<EntityResponse<Account>>;
     /**
      * Get the user's current account details
      */

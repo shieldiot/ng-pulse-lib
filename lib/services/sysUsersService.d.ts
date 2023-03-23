@@ -13,15 +13,15 @@ export declare class SysUsersService {
     /**
      * Create new user
      */
-    create(body?: User): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<User>>>;
+    create(body?: User): import("rxjs").Observable<EntityResponse<User>>;
     /**
      * Update existing user in the system
      */
-    update(body?: User): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<User>>>;
+    update(body?: User): import("rxjs").Observable<EntityResponse<User>>;
     /**
      * Delete a user from the system
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single user by id
      */
@@ -33,7 +33,7 @@ export declare class SysUsersService {
     /**
      * Create new user with all its accounts memberships
      */
-    createMembership(body?: UserMemberships): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<UserMemberships>>>;
+    createMembership(body?: UserMemberships): import("rxjs").Observable<EntityResponse<UserMemberships>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysUsersService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysUsersService>;
 }

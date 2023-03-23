@@ -10,15 +10,15 @@ export declare class SysMembersService {
     /**
      * Create new member
      */
-    create(body?: Member): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Member>>>;
+    create(body?: Member): import("rxjs").Observable<EntityResponse<Member>>;
     /**
      * Update existing member in the system
      */
-    update(body?: Member): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Member>>>;
+    update(body?: Member): import("rxjs").Observable<EntityResponse<Member>>;
     /**
      * Delete member from the system
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single member by id
      */

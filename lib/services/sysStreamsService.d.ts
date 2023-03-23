@@ -10,15 +10,15 @@ export declare class SysStreamsService {
     /**
      * Create new stream
      */
-    create(body?: Stream): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Stream>>>;
+    create(body?: Stream): import("rxjs").Observable<EntityResponse<Stream>>;
     /**
      * Update existing stream in the system
      */
-    update(body?: Stream): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<Stream>>>;
+    update(body?: Stream): import("rxjs").Observable<EntityResponse<Stream>>;
     /**
      * Delete a stream from the system
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single stream by id
      */

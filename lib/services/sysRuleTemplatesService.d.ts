@@ -10,15 +10,15 @@ export declare class SysRuleTemplatesService {
     /**
      * Create new rule template
      */
-    create(body?: RuleTemplate): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<RuleTemplate>>>;
+    create(body?: RuleTemplate): import("rxjs").Observable<EntityResponse<RuleTemplate>>;
     /**
      * Update existing rule template
      */
-    update(body?: RuleTemplate): import("rxjs").Observable<import("@angular/common/http").HttpResponse<EntityResponse<RuleTemplate>>>;
+    update(body?: RuleTemplate): import("rxjs").Observable<EntityResponse<RuleTemplate>>;
     /**
      * Delete a rule template from the system
      */
-    delete(id?: string): import("rxjs").Observable<import("@angular/common/http").HttpResponse<ActionResponse>>;
+    delete(id?: string): import("rxjs").Observable<ActionResponse>;
     /**
      * Get single rule template by id
      */
