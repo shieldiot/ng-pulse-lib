@@ -857,6 +857,37 @@ class DevicesService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
     /**
+     * Find top 10 devices by their score filter by query
+     */
+    findTop(streamId, search, type, status, risk, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/top`, ...params);
+    }
+    /**
      * Add tag to a device
      */
     addTag(id, tag) {
@@ -873,12 +904,6 @@ class DevicesService {
      */
     applyAction(id, action) {
         return this.rest.post(`${this.baseUrl}/${id}/action/${action}`, '');
-    }
-    /**
-     * Get top 10 devices by their score
-     */
-    getTop() {
-        return this.rest.get(`${this.baseUrl}/top`);
     }
 }
 DevicesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: DevicesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -946,16 +971,47 @@ class EventsService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
     /**
+     * Find top 10 events by their severity filter by query
+     */
+    getTop(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/top`, ...params);
+    }
+    /**
      * Set event status
      */
     applyAction(id, status) {
         return this.rest.post(`${this.baseUrl}/${id}/status/${status}`, '');
-    }
-    /**
-     * Get top 10 events by their severity
-     */
-    getTop() {
-        return this.rest.get(`${this.baseUrl}/top`);
     }
 }
 EventsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });

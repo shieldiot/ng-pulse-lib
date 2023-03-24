@@ -3,8 +3,8 @@ import { PulseConfig } from '../../config';
 import { Event } from '../entities/Event';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
-import { EventStatusCode } from '../enums/EventStatusCode';
 import { EventWithDevice } from '../entities/EventWithDevice';
+import { EventStatusCode } from '../enums/EventStatusCode';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
@@ -20,13 +20,13 @@ export declare class EventsService {
      */
     find(streamId?: string, deviceId?: string, search?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Event>>;
     /**
+     * Find top 10 events by their severity filter by query
+     */
+    getTop(streamId?: string, deviceId?: string, search?: string, from?: number, to?: number, type?: EventTypeCode[], severity?: SeverityTypeCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<EventWithDevice>>;
+    /**
      * Set event status
      */
     applyAction(id?: string, status?: EventStatusCode): import("rxjs").Observable<ActionResponse>;
-    /**
-     * Get top 10 events by their severity
-     */
-    getTop(): import("rxjs").Observable<EntitiesResponse<EventWithDevice>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<EventsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<EventsService>;
 }
