@@ -40,6 +40,18 @@ class Indicator {
     }
 }
 
+// Key Value int tuple
+class IntKeyValue {
+    constructor(key, value) {
+        if (key !== undefined) {
+            this.key = key;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
 // Login parameters data model
 class LoginParams {
     constructor(email, password, accessToken) {
@@ -205,6 +217,21 @@ class Event extends BaseEntity {
 
 // EventWithDevice entity is an event with the device info (for display onlY)
 class EventWithDevice extends BaseEntity {
+}
+
+// IntDistribution model represents a grouped counts of elements of type int (usually enum)
+class IntDistribution {
+    constructor(name, total, values) {
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (total !== undefined) {
+            this.total = total;
+        }
+        if (values !== undefined) {
+            this.values = values;
+        }
+    }
 }
 
 // Member represents a user in the account and the role he has in this account
@@ -888,6 +915,99 @@ class DevicesService {
         return this.rest.get(`${this.baseUrl}/top`, ...params);
     }
     /**
+     * Find device distribution by type filtered by query
+     */
+    countByType(streamId, search, type, status, risk, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-type`, ...params);
+    }
+    /**
+     * Find device distribution by status filtered by query
+     */
+    countByStatus(streamId, search, type, status, risk, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-status`, ...params);
+    }
+    /**
+     * Find device distribution by action filtered by query
+     */
+    countByAction(streamId, search, type, status, risk, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-action`, ...params);
+    }
+    /**
      * Add tag to a device
      */
     addTag(id, tag) {
@@ -1008,6 +1128,191 @@ class EventsService {
             params.push(`size=${size}`);
         }
         return this.rest.get(`${this.baseUrl}/top`, ...params);
+    }
+    /**
+     * Find events distribution by type filtered by query
+     */
+    countByType(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-type`, ...params);
+    }
+    /**
+     * Find events distribution by status filtered by query
+     */
+    countByStatus(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-status`, ...params);
+    }
+    /**
+     * Find events distribution by severity filtered by query
+     */
+    countBySeverity(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-severity`, ...params);
+    }
+    /**
+     * Find events distribution by rule filtered by query
+     */
+    countByRule(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-rule`, ...params);
+    }
+    /**
+     * Find events distribution by category filtered by query
+     */
+    countByCategory(streamId, deviceId, search, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/count/by-category`, ...params);
     }
     /**
      * Set event status
@@ -1533,5 +1838,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

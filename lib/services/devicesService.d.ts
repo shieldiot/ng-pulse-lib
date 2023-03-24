@@ -4,6 +4,7 @@ import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import { DeviceWithEvents } from '../entities/DeviceWithEvents';
+import { IntDistribution } from '../entities/IntDistribution';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
@@ -35,6 +36,18 @@ export declare class DevicesService {
      * Find top 10 devices by their score filter by query
      */
     findTop(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<DeviceWithEvents>>;
+    /**
+     * Find device distribution by type filtered by query
+     */
+    countByType(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntityResponse<IntDistribution>>;
+    /**
+     * Find device distribution by status filtered by query
+     */
+    countByStatus(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntityResponse<IntDistribution>>;
+    /**
+     * Find device distribution by action filtered by query
+     */
+    countByAction(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntityResponse<IntDistribution>>;
     /**
      * Add tag to a device
      */
