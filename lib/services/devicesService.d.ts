@@ -1,10 +1,10 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { DeviceWithEvents } from '../entities/DeviceWithEvents';
+import { Device } from '../entities/Device';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
