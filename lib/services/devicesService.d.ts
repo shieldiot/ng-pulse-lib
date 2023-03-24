@@ -30,7 +30,7 @@ export declare class DevicesService {
     /**
      * Find list of devices by query
      */
-    find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Device>>;
+    find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Device>>;
     /**
      * Add tag to a device
      */

@@ -828,7 +828,7 @@ class DevicesService {
     /**
      * Find list of devices by query
      */
-    find(streamId, search, type, status, sort, page, size) {
+    find(streamId, search, type, status, risk, sort, page, size) {
         const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
@@ -841,6 +841,9 @@ class DevicesService {
         }
         if (status != null) {
             params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
         }
         if (sort != null) {
             params.push(`sort=${sort}`);
