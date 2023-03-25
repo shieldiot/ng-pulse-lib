@@ -160,7 +160,7 @@ class AuditLog extends BaseEntity {
 }
 
 // Checkpoint represents parsing status in time that preserves parsing cycle statistics and last checkpoint (timestamp) to avoid parsing the same files over and over again
-class Calendar extends BaseEntity {
+class Checkpoint extends BaseEntity {
 }
 
 // DNSRecord represents network statistics of DNS requests
@@ -207,7 +207,7 @@ class DataIngestion {
 class Device extends BaseEntity {
 }
 
-// DeviceWithEvents entity is a device with its related events (for display onlY)
+// DeviceWithEvents entity is a device with its related events (for display only)
 class DeviceWithEvents extends BaseEntity {
 }
 
@@ -215,7 +215,7 @@ class DeviceWithEvents extends BaseEntity {
 class Event extends BaseEntity {
 }
 
-// EventWithDevice entity is an event with the device info (for display onlY)
+// EventWithDevice entity is an event with the device information (for display only)
 class EventWithDevice extends BaseEntity {
 }
 
@@ -1799,6 +1799,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
     } });
 
 const Services = [
+    DevicesService,
+    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -1806,8 +1808,6 @@ const Services = [
     SysStreamsService,
     SysUsersService,
     UserService,
-    DevicesService,
-    EventsService,
 ];
 
 class PulseLibModule {
@@ -1838,5 +1838,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Calendar, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

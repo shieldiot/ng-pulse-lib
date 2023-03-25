@@ -1,5 +1,5 @@
 import { BaseEntity } from '../entities/BaseEntity';
-export declare class Calendar extends BaseEntity {
+export declare class Checkpoint extends BaseEntity {
     accountId: string;
     streamId: string;
     checkpoint: number;

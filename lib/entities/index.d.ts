@@ -2,7 +2,7 @@ export * from './Account';
 export * from './AccountSettings';
 export * from './AuditLog';
 export * from './BaseEntity';
-export * from './Calendar';
+export * from './Checkpoint';
 export * from './DNSRecord';
 export * from './DataIngestion';
 export * from './Device';

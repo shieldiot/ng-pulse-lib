@@ -1,11 +1,11 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
+import { IntDistribution } from '../entities/IntDistribution';
+import { EventStatusCode } from '../enums/EventStatusCode';
 import { Event } from '../entities/Event';
 import { EventTypeCode } from '../enums/EventTypeCode';
 import { SeverityTypeCode } from '../enums/SeverityTypeCode';
 import { EventWithDevice } from '../entities/EventWithDevice';
-import { IntDistribution } from '../entities/IntDistribution';
-import { EventStatusCode } from '../enums/EventStatusCode';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
