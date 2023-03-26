@@ -687,34 +687,22 @@ var SeverityTypeCode;
 (function (SeverityTypeCode) {
     // Undefined [0] 
     SeverityTypeCode[SeverityTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // No effect [1] 
-    SeverityTypeCode[SeverityTypeCode["NO_EFFECT"] = 1] = "NO_EFFECT";
-    // Notification only [2] 
-    SeverityTypeCode[SeverityTypeCode["NOTIFICATION"] = 2] = "NOTIFICATION";
-    // Lowest severity [3] 
-    SeverityTypeCode[SeverityTypeCode["LOWEST"] = 3] = "LOWEST";
-    // Low severity [4] 
-    SeverityTypeCode[SeverityTypeCode["LOW"] = 4] = "LOW";
-    // Medium severity [5] 
-    SeverityTypeCode[SeverityTypeCode["MEDIUM"] = 5] = "MEDIUM";
-    // High severity [6] 
-    SeverityTypeCode[SeverityTypeCode["HIGH"] = 6] = "HIGH";
-    // Highest severity [7] 
-    SeverityTypeCode[SeverityTypeCode["HIGHEST"] = 7] = "HIGHEST";
-    // Critical severity [8] 
-    SeverityTypeCode[SeverityTypeCode["CRITICAL"] = 8] = "CRITICAL";
+    // Low severity [1] 
+    SeverityTypeCode[SeverityTypeCode["LOW"] = 1] = "LOW";
+    // Medium severity [2] 
+    SeverityTypeCode[SeverityTypeCode["MEDIUM"] = 2] = "MEDIUM";
+    // High severity [3] 
+    SeverityTypeCode[SeverityTypeCode["HIGH"] = 3] = "HIGH";
+    // Critical severity [4] 
+    SeverityTypeCode[SeverityTypeCode["CRITICAL"] = 4] = "CRITICAL";
 })(SeverityTypeCode || (SeverityTypeCode = {}));
 // Return list of SeverityTypeCode values and their display names
 function GetSeverityTypeCodes() {
     let result = new Map();
     result.set(SeverityTypeCode.UNDEFINED, 'Undefined');
-    result.set(SeverityTypeCode.NO_EFFECT, 'No Effect');
-    result.set(SeverityTypeCode.NOTIFICATION, 'Notification');
-    result.set(SeverityTypeCode.LOWEST, 'Lowest');
     result.set(SeverityTypeCode.LOW, 'Low');
     result.set(SeverityTypeCode.MEDIUM, 'Medium');
     result.set(SeverityTypeCode.HIGH, 'High');
-    result.set(SeverityTypeCode.HIGHEST, 'Highest');
     result.set(SeverityTypeCode.CRITICAL, 'Critical');
     return result;
 }
