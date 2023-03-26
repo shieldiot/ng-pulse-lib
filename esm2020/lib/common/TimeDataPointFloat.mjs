@@ -1,0 +1,12 @@
+// TimeDataPointFloat model represents a float datapoint in time
+export class TimeDataPointFloat {
+    constructor(timestamp, value) {
+        if (timestamp !== undefined) {
+            this.timestamp = timestamp;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGltZURhdGFQb2ludEZsb2F0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvbmctcHVsc2UtbGliL3NyYy9saWIvY29tbW9uL1RpbWVEYXRhUG9pbnRGbG9hdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQSxnRUFBZ0U7QUFDaEUsTUFBTSxPQUFPLGtCQUFrQjtJQVExQixZQUFZLFNBQWtCLEVBQUUsS0FBYztRQUMzQyxJQUFJLFNBQVMsS0FBSyxTQUFTLEVBQUU7WUFBRSxJQUFJLENBQUMsU0FBUyxHQUFHLFNBQVMsQ0FBQztTQUFFO1FBQzVELElBQUksS0FBSyxLQUFLLFNBQVMsRUFBRTtZQUFFLElBQUksQ0FBQyxLQUFLLEdBQUcsS0FBSyxDQUFDO1NBQUU7SUFDcEQsQ0FBQztDQUVKIiwic291cmNlc0NvbnRlbnQiOlsiXG5cblxuLy8gVGltZURhdGFQb2ludEZsb2F0IG1vZGVsIHJlcHJlc2VudHMgYSBmbG9hdCBkYXRhcG9pbnQgaW4gdGltZVxuZXhwb3J0IGNsYXNzIFRpbWVEYXRhUG9pbnRGbG9hdCB7XG4gXG4gICAgLy8gU2F0YSBwb2ludCB0aW1lc3RhbXAgW0Vwb2NoIG1pbGxpc2Vjb25kcyBUaW1lc3RhbXBdIFxuICAgIHB1YmxpYyB0aW1lc3RhbXA6IG51bWJlcjtcbiBcbiAgICAvLyBGbG9hdCB2YWx1ZSBcbiAgICBwdWJsaWMgdmFsdWU6IG51bWJlcjtcbiBcbiAgICAgY29uc3RydWN0b3IodGltZXN0YW1wPzogbnVtYmVyLCB2YWx1ZT86IG51bWJlcikgeyBcbiAgICAgICAgaWYgKHRpbWVzdGFtcCAhPT0gdW5kZWZpbmVkKSB7IHRoaXMudGltZXN0YW1wID0gdGltZXN0YW1wOyB9XG4gICAgICAgIGlmICh2YWx1ZSAhPT0gdW5kZWZpbmVkKSB7IHRoaXMudmFsdWUgPSB2YWx1ZTsgfVxuICAgIH1cblxufVxuXG5cbiJdfQ==

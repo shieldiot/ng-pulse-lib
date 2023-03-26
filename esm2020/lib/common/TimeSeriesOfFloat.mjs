@@ -1,0 +1,15 @@
+// TimeSeriesOfFloat model represents a float set of data points over time
+export class TimeSeriesOfFloat {
+    constructor(name, range, values) {
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (range !== undefined) {
+            this.range = range;
+        }
+        if (values !== undefined) {
+            this.values = values;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGltZVNlcmllc09mRmxvYXQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy1wdWxzZS1saWIvc3JjL2xpYi9jb21tb24vVGltZVNlcmllc09mRmxvYXQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS0EsMEVBQTBFO0FBQzFFLE1BQU0sT0FBTyxpQkFBaUI7SUFXekIsWUFBWSxJQUFhLEVBQUUsS0FBaUIsRUFBRSxNQUE2QjtRQUN4RSxJQUFJLElBQUksS0FBSyxTQUFTLEVBQUU7WUFBRSxJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztTQUFFO1FBQzdDLElBQUksS0FBSyxLQUFLLFNBQVMsRUFBRTtZQUFFLElBQUksQ0FBQyxLQUFLLEdBQUcsS0FBSyxDQUFDO1NBQUU7UUFDaEQsSUFBSSxNQUFNLEtBQUssU0FBUyxFQUFFO1lBQUUsSUFBSSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUM7U0FBRTtJQUN2RCxDQUFDO0NBRUoiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBUaW1lRnJhbWUgfSBmcm9tICcuLi9jb21tb24vVGltZUZyYW1lJztcbmltcG9ydCB7IFRpbWVEYXRhUG9pbnRGbG9hdCB9IGZyb20gJy4uL2NvbW1vbi9UaW1lRGF0YVBvaW50RmxvYXQnO1xuXG5cblxuLy8gVGltZVNlcmllc09mRmxvYXQgbW9kZWwgcmVwcmVzZW50cyBhIGZsb2F0IHNldCBvZiBkYXRhIHBvaW50cyBvdmVyIHRpbWVcbmV4cG9ydCBjbGFzcyBUaW1lU2VyaWVzT2ZGbG9hdCB7XG4gXG4gICAgLy8gTmFtZSBvZiB0aGUgdGltZSBzZXJpZXMgXG4gICAgcHVibGljIG5hbWU6IHN0cmluZztcbiBcbiAgICAvLyBSYW5nZSBvZiB0aGUgc2VyaWVzIChmcm9tIC4uLiB0bykgXG4gICAgcHVibGljIHJhbmdlOiBUaW1lRnJhbWU7XG4gXG4gICAgLy8gU2VyaWVzIG9mIGZsb2F0IGRhdGEgcG9pbnRzIFxuICAgIHB1YmxpYyB2YWx1ZXM6IFRpbWVEYXRhUG9pbnRGbG9hdFtdO1xuIFxuICAgICBjb25zdHJ1Y3RvcihuYW1lPzogc3RyaW5nLCByYW5nZT86IFRpbWVGcmFtZSwgdmFsdWVzPzogVGltZURhdGFQb2ludEZsb2F0W10pIHsgXG4gICAgICAgIGlmIChuYW1lICE9PSB1bmRlZmluZWQpIHsgdGhpcy5uYW1lID0gbmFtZTsgfVxuICAgICAgICBpZiAocmFuZ2UgIT09IHVuZGVmaW5lZCkgeyB0aGlzLnJhbmdlID0gcmFuZ2U7IH1cbiAgICAgICAgaWYgKHZhbHVlcyAhPT0gdW5kZWZpbmVkKSB7IHRoaXMudmFsdWVzID0gdmFsdWVzOyB9XG4gICAgfVxuXG59XG5cblxuIl19

@@ -19,6 +19,18 @@ class AccountRole {
     }
 }
 
+// Key Value float tuple
+class FloatKeyValue {
+    constructor(key, value) {
+        if (key !== undefined) {
+            this.key = key;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
 // Indicator model represents a feature and feature value within a normal range
 class Indicator {
     constructor(name, significance, min, max, actual) {
@@ -87,6 +99,99 @@ class StringKeyValue {
         }
         if (value !== undefined) {
             this.value = value;
+        }
+    }
+}
+
+// TimeDataPoint model represents a generic datapoint in time
+class TimeDataPoint {
+    constructor(timestamp, value) {
+        if (timestamp !== undefined) {
+            this.timestamp = timestamp;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
+// TimeDataPoint2D model represents a 2 dimensions datapoint in time
+class TimeDataPoint2D {
+    constructor(timestamp, value) {
+        if (timestamp !== undefined) {
+            this.timestamp = timestamp;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
+// TimeDataPointFloat model represents a float datapoint in time
+class TimeDataPointFloat {
+    constructor(timestamp, value) {
+        if (timestamp !== undefined) {
+            this.timestamp = timestamp;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
+// TimeFrame represents a finite time window (from - to)
+class TimeFrame {
+    constructor(from, to) {
+        if (from !== undefined) {
+            this.from = from;
+        }
+        if (to !== undefined) {
+            this.to = to;
+        }
+    }
+}
+
+// TimeSeries model represents a generic set of data points over time
+class TimeSeries {
+    constructor(name, range, values) {
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (range !== undefined) {
+            this.range = range;
+        }
+        if (values !== undefined) {
+            this.values = values;
+        }
+    }
+}
+
+// TimeSeriesOf2D model represents a 2 dimension time series
+class TimeSeriesOf2D {
+    constructor(name, range, values) {
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (range !== undefined) {
+            this.range = range;
+        }
+        if (values !== undefined) {
+            this.values = values;
+        }
+    }
+}
+
+// TimeSeriesOfFloat model represents a float set of data points over time
+class TimeSeriesOfFloat {
+    constructor(name, range, values) {
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (range !== undefined) {
+            this.range = range;
+        }
+        if (values !== undefined) {
+            this.values = values;
         }
     }
 }
@@ -1318,6 +1423,59 @@ class EventsService {
     applyAction(id, status) {
         return this.rest.post(`${this.baseUrl}/${id}/status/${status}`, '');
     }
+    /**
+     * Get current shieldex value as ActionResponse, the Key contains the shield index and the data includes the trend
+     */
+    getShieldex() {
+        return this.rest.get(`${this.baseUrl}/shieldex`);
+    }
+    /**
+     * Get histogram of events over time by dimension (type | severity | status | ruleType | category)
+     */
+    eventsTimeline(streamId, deviceId, dimension, from, to, type, severity, sort, page, size) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (dimension != null) {
+            params.push(`dimension=${dimension}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}/timeline`, ...params);
+    }
+    /**
+     * Get histogram of shieldex values over time
+     */
+    shieldexTimeline(streamId) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        return this.rest.get(`${this.baseUrl}/shieldex/timeline`, ...params);
+    }
 }
 EventsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
 EventsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService });
@@ -1781,8 +1939,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                 }] }, { type: RestUtil }]; } });
 
 const Services = [
-    DevicesService,
-    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -1790,6 +1946,8 @@ const Services = [
     SysStreamsService,
     SysUsersService,
     UserService,
+    DevicesService,
+    EventsService,
 ];
 
 class PulseLibModule {
@@ -1820,5 +1978,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
