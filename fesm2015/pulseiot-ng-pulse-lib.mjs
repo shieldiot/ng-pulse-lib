@@ -339,6 +339,10 @@ class IntDistribution {
     }
 }
 
+// Integration specifications
+class Integration extends BaseEntity {
+}
+
 // Member represents a user in the account and the role he has in this account
 // User may have several memberships for several accounts, each with a different role
 class Member extends BaseEntity {
@@ -635,6 +639,31 @@ function GetEventTypeCodes() {
     result.set(EventTypeCode.UNKNOWN_OPERATION, 'Unknown Operation');
     result.set(EventTypeCode.CRYPTO_MINING, 'Crypto Mining');
     result.set(EventTypeCode.SUSPICIOUS_IP, 'Suspicious Ip');
+    return result;
+}
+
+// Integration type code
+var IntegrationTypeCode;
+(function (IntegrationTypeCode) {
+    // Undefined [0] 
+    IntegrationTypeCode[IntegrationTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // General HTTP(S) based integration [1] 
+    IntegrationTypeCode[IntegrationTypeCode["HTTP"] = 1] = "HTTP";
+    // General SMTP based integration [2] 
+    IntegrationTypeCode[IntegrationTypeCode["SMTP"] = 2] = "SMTP";
+    // Internal email service integration [3] 
+    IntegrationTypeCode[IntegrationTypeCode["EMAIL"] = 3] = "EMAIL";
+    // Internal SMS service integration  [4] 
+    IntegrationTypeCode[IntegrationTypeCode["SMS"] = 4] = "SMS";
+})(IntegrationTypeCode || (IntegrationTypeCode = {}));
+// Return list of IntegrationTypeCode values and their display names
+function GetIntegrationTypeCodes() {
+    let result = new Map();
+    result.set(IntegrationTypeCode.UNDEFINED, 'Undefined');
+    result.set(IntegrationTypeCode.HTTP, 'Http');
+    result.set(IntegrationTypeCode.SMTP, 'Smtp');
+    result.set(IntegrationTypeCode.EMAIL, 'Email');
+    result.set(IntegrationTypeCode.SMS, 'Sms');
     return result;
 }
 
@@ -1459,10 +1488,16 @@ class EventsService {
     /**
      * Get histogram of shieldex values over time
      */
-    shieldexTimeline(streamId) {
+    shieldexTimeline(streamId, from, to) {
         const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
         }
         return this.rest.get(`${this.baseUrl}/shieldex/timeline`, ...params);
     }
@@ -1894,6 +1929,79 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                     }] }, { type: RestUtil }];
     } });
 
+// List of integrations related actions for the operator 
+// @RequestHeader X-API-KEY The key to identify the application (console) 
+// @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
+class UsrIntegrationsService {
+    // Class constructor
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/integrations';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new integration
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update existing integration
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete integration from the system
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single integration by id
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of integrations by query
+     */
+    find(accountId, streamId, search, sort, page, size) {
+        const params = [];
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+UsrIntegrationsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: UsrIntegrationsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrIntegrationsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: UsrIntegrationsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: UsrIntegrationsService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: PulseConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
 // List of user related actions 
 // @RequestHeader X-API-KEY The key to identify the application (console) 
 // @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user 
@@ -1951,6 +2059,7 @@ const Services = [
     SysRulesService,
     SysStreamsService,
     SysUsersService,
+    UsrIntegrationsService,
     UserService,
     DevicesService,
     EventsService,
@@ -1984,5 +2093,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

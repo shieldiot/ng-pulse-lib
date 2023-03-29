@@ -6,6 +6,7 @@ export * from './DeviceTypeCode';
 export * from './EventCategoryCode';
 export * from './EventStatusCode';
 export * from './EventTypeCode';
+export * from './IntegrationTypeCode';
 export * from './MemberRoleCode';
 export * from './RuleTypeCode';
 export * from './SeverityTypeCode';

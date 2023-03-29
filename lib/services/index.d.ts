@@ -8,3 +8,4 @@ export * from './sysRulesService';
 export * from './sysStreamsService';
 export * from './sysUsersService';
 export * from './userService';
+export * from './usrIntegrationsService';

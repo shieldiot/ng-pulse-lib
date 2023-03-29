@@ -10,6 +10,7 @@ export * from './DeviceWithEvents';
 export * from './Event';
 export * from './EventWithDevice';
 export * from './IntDistribution';
+export * from './Integration';
 export * from './Member';
 export * from './Rule';
 export * from './RuleTemplate';

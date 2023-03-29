@@ -1,13 +1,13 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
-import { EventTypeCode } from '../enums/EventTypeCode';
-import { SeverityTypeCode } from '../enums/SeverityTypeCode';
-import { EventWithDevice } from '../entities/EventWithDevice';
-import { IntDistribution } from '../entities/IntDistribution';
 import { EventStatusCode } from '../enums/EventStatusCode';
 import { TimeSeriesOf2D } from '../common/TimeSeriesOf2D';
 import { TimeSeriesOfFloat } from '../common/TimeSeriesOfFloat';
 import { Event } from '../entities/Event';
+import { EventTypeCode } from '../enums/EventTypeCode';
+import { SeverityTypeCode } from '../enums/SeverityTypeCode';
+import { EventWithDevice } from '../entities/EventWithDevice';
+import { IntDistribution } from '../entities/IntDistribution';
 import * as i0 from "@angular/core";
 export declare class EventsService {
     private config;
@@ -61,7 +61,7 @@ export declare class EventsService {
     /**
      * Get histogram of shieldex values over time
      */
-    shieldexTimeline(streamId?: string): import("rxjs").Observable<EntityResponse<TimeSeriesOfFloat>>;
+    shieldexTimeline(streamId?: string, from?: number, to?: number): import("rxjs").Observable<EntityResponse<TimeSeriesOfFloat>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<EventsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<EventsService>;
 }
