@@ -474,8 +474,8 @@ var DeviceStatusCode;
     DeviceStatusCode[DeviceStatusCode["ACTIVE"] = 2] = "ACTIVE";
     // Inactive device [3] 
     DeviceStatusCode[DeviceStatusCode["INACTIVE"] = 3] = "INACTIVE";
-    // Suspended device (about to be deleted) [4] 
-    DeviceStatusCode[DeviceStatusCode["SUSPENDED"] = 4] = "SUSPENDED";
+    // Blocked device [4] 
+    DeviceStatusCode[DeviceStatusCode["BLOCKED"] = 4] = "BLOCKED";
 })(DeviceStatusCode || (DeviceStatusCode = {}));
 // Return list of DeviceStatusCode values and their display names
 function GetDeviceStatusCodes() {
@@ -484,7 +484,7 @@ function GetDeviceStatusCodes() {
     result.set(DeviceStatusCode.PENDING, 'Pending');
     result.set(DeviceStatusCode.ACTIVE, 'Active');
     result.set(DeviceStatusCode.INACTIVE, 'Inactive');
-    result.set(DeviceStatusCode.SUSPENDED, 'Suspended');
+    result.set(DeviceStatusCode.BLOCKED, 'Blocked');
     return result;
 }
 
@@ -1006,6 +1006,40 @@ class DevicesService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
     /**
+     * Export list of devices by query to a file with the specified format
+     */
+    exportFormat(streamId, search, type, status, risk, sort, page, size, format) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (risk != null) {
+            params.push(`risk=${risk}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        if (format != null) {
+            params.push(`format=${format}`);
+        }
+        return this.rest.download(`devices`, `${this.baseUrl}/export`, ...params);
+    }
+    /**
      * Find top 10 devices by their score filter by query
      */
     findTop(streamId, search, type, status, risk, sort, page, size) {
@@ -1213,6 +1247,46 @@ class EventsService {
             params.push(`size=${size}`);
         }
         return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Export list of events by query to a file with the specified format
+     */
+    exportFormat(streamId, deviceId, search, from, to, type, severity, sort, page, size, format) {
+        const params = [];
+        if (streamId != null) {
+            params.push(`streamId=${streamId}`);
+        }
+        if (deviceId != null) {
+            params.push(`deviceId=${deviceId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (severity != null) {
+            params.push(`severity=${severity}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (size != null) {
+            params.push(`size=${size}`);
+        }
+        if (format != null) {
+            params.push(`format=${format}`);
+        }
+        return this.rest.download(`events`, `${this.baseUrl}/export`, ...params);
     }
     /**
      * Find top 10 events by their severity filter by query
@@ -2053,6 +2127,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
     } });
 
 const Services = [
+    DevicesService,
+    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -2061,8 +2137,6 @@ const Services = [
     SysUsersService,
     UsrIntegrationsService,
     UserService,
-    DevicesService,
-    EventsService,
 ];
 
 class PulseLibModule {

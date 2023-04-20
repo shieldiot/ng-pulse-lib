@@ -1,11 +1,11 @@
 import { RestUtil, EntityResponse, EntitiesResponse, ActionResponse } from '../../utils';
 import { PulseConfig } from '../../config';
+import { Device } from '../entities/Device';
 import { DeviceTypeCode } from '../enums/DeviceTypeCode';
 import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 import { DeviceWithEvents } from '../entities/DeviceWithEvents';
 import { IntDistribution } from '../entities/IntDistribution';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
-import { Device } from '../entities/Device';
 import * as i0 from "@angular/core";
 export declare class DevicesService {
     private config;
@@ -32,6 +32,10 @@ export declare class DevicesService {
      * Find list of devices by query
      */
     find(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<EntitiesResponse<Device>>;
+    /**
+     * Export list of devices by query to a file with the specified format
+     */
+    exportFormat(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number, format?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Find top 10 devices by their score filter by query
      */

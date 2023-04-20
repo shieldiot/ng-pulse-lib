@@ -3,6 +3,6 @@ export declare enum DeviceStatusCode {
     PENDING = 1,
     ACTIVE = 2,
     INACTIVE = 3,
-    SUSPENDED = 4
+    BLOCKED = 4
 }
 export declare function GetDeviceStatusCodes(): Map<DeviceStatusCode, string>;
