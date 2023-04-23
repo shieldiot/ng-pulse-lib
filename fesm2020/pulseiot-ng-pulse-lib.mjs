@@ -878,23 +878,34 @@ class RestUtil {
                 }
             }
         });
-        // Set content type for: json / csv / xml / pdf
-        let contentType = 'application/json';
-        if (downloadLink.toLowerCase().endsWith('csv')) {
-            contentType = 'text/csv';
-        }
-        else if (downloadLink.toLowerCase().endsWith('xml')) {
-            contentType = 'text/xml';
-        }
-        else if (downloadLink.toLowerCase().endsWith('pdf')) {
-            contentType = 'application/pdf';
-        }
+        // Set content type for: json / csv / xml / pdf /xslx
+        let contentType = this.getMimeType(downloadLink);
         return this.http.get(resourceUrl, {
             responseType: 'blob',
             reportProgress: true,
             observe: 'events',
             headers: new HttpHeaders({ 'Content-Type': contentType })
         });
+    }
+    // Download2 is an alternative option to download
+    download2(fileName, url, ...params) {
+        let downloadLink = fileName;
+        // extract file name
+        params.forEach(p => {
+            let arr = p.split('=');
+            if (arr.length > 1) {
+                if (arr[0].toLowerCase() === 'filename') {
+                    downloadLink = arr[1];
+                }
+            }
+        });
+        let contentType = this.getMimeType(fileName);
+        const link = document.createElement('a');
+        link.href = this.buildUrl(url, ...params);
+        link.download = downloadLink;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
     // HTTP GET action
     get(url, ...params) {
@@ -919,6 +930,24 @@ class RestUtil {
     // Construct URL with parameters
     buildUrl(url, ...params) {
         return (params === null) ? url : (params.length === 0) ? url : `${url}${params && params.length > 0 ? '?' + params.join('&') : ''}`;
+    }
+    // Return MIME type based on file extension
+    getMimeType(fileName) {
+        // Set content type for: json / csv / xml / pdf /xslx
+        let contentType = 'application/json';
+        if (fileName.toLowerCase().endsWith('csv')) {
+            contentType = 'text/csv';
+        }
+        else if (fileName.toLowerCase().endsWith('xml')) {
+            contentType = 'text/xml';
+        }
+        else if (fileName.toLowerCase().endsWith('pdf')) {
+            contentType = 'application/pdf';
+        }
+        else if (fileName.toLowerCase().endsWith('xlsx')) {
+            contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        }
+        return contentType;
     }
 }
 RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -2107,8 +2136,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                 }] }, { type: RestUtil }]; } });
 
 const Services = [
-    DevicesService,
-    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -2117,6 +2144,8 @@ const Services = [
     SysUsersService,
     UsrIntegrationsService,
     UserService,
+    DevicesService,
+    EventsService,
 ];
 
 class PulseLibModule {
