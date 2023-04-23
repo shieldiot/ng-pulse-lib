@@ -1602,6 +1602,12 @@ class EventsService {
         }
         return this.rest.get(`${this.baseUrl}/shieldex/timeline`, ...params);
     }
+    /**
+     * Export event source file
+     */
+    exportSource(id) {
+        return this.rest.download(`events`, `${this.baseUrl}/${id}/export`);
+    }
 }
 EventsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
 EventsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService });
