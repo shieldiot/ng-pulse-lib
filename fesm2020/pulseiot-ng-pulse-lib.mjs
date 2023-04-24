@@ -1037,7 +1037,7 @@ class DevicesService {
     /**
      * Export list of devices by query to a file with the specified format
      */
-    exportFormat(streamId, search, type, status, risk, sort, page, size, format) {
+    exportFormat(format, streamId, search, type, status, risk, sort, page, size) {
         const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
@@ -1063,10 +1063,7 @@ class DevicesService {
         if (size != null) {
             params.push(`size=${size}`);
         }
-        if (format != null) {
-            params.push(`format=${format}`);
-        }
-        return this.rest.download(`devices`, `${this.baseUrl}/export`, ...params);
+        return this.rest.download(`devices`, `${this.baseUrl}/export/${format}`, ...params);
     }
     /**
      * Find top 10 devices by their score filter by query
@@ -1278,7 +1275,7 @@ class EventsService {
     /**
      * Export list of events by query to a file with the specified format
      */
-    exportFormat(streamId, deviceId, search, from, to, type, severity, sort, page, size, format) {
+    exportFormat(format, streamId, deviceId, search, from, to, type, severity, sort, page, size) {
         const params = [];
         if (streamId != null) {
             params.push(`streamId=${streamId}`);
@@ -1310,10 +1307,7 @@ class EventsService {
         if (size != null) {
             params.push(`size=${size}`);
         }
-        if (format != null) {
-            params.push(`format=${format}`);
-        }
-        return this.rest.download(`events`, `${this.baseUrl}/export`, ...params);
+        return this.rest.download(`events`, `${this.baseUrl}/export/${format}`, ...params);
     }
     /**
      * Find top 10 events by their severity filter by query

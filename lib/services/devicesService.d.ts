@@ -35,7 +35,7 @@ export declare class DevicesService {
     /**
      * Export list of devices by query to a file with the specified format
      */
-    exportFormat(streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number, format?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportFormat(format?: string, streamId?: string, search?: string, type?: DeviceTypeCode[], status?: DeviceStatusCode[], risk?: number, sort?: string, page?: number, size?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Find top 10 devices by their score filter by query
      */
