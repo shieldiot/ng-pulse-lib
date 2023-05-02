@@ -274,12 +274,15 @@ class DNSRecord extends BaseEntity {
 
 // DataIngestion is the ingestion pipeline configuration
 class DataIngestion {
-    constructor(inputFilesURIs, inputFilesExt, usageTimeWindowSec, sessionTimeWindowSec, usageOutputURIs, sessionOutputURIs, dNSOutputURIs, rawDataBackupURI, overwriteFiles, postAction) {
+    constructor(inputFilesURIs, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, usageOutputURIs, sessionOutputURIs, dNSOutputURIs, rawDataBackupURI, overwriteFiles, postAction) {
         if (inputFilesURIs !== undefined) {
             this.inputFilesURIs = inputFilesURIs;
         }
         if (inputFilesExt !== undefined) {
             this.inputFilesExt = inputFilesExt;
+        }
+        if (subNets !== undefined) {
+            this.subNets = subNets;
         }
         if (usageTimeWindowSec !== undefined) {
             this.usageTimeWindowSec = usageTimeWindowSec;

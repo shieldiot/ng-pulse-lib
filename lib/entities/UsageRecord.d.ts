@@ -6,6 +6,7 @@ export declare class UsageRecord extends BaseEntity {
     accountId: string;
     streamId: string;
     deviceId: string;
+    deviceIp: string;
     startTime: number;
     endTime: number;
     sourceIP: string;
