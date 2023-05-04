@@ -1603,7 +1603,7 @@ class EventsService {
      * Export event source file
      */
     exportSource(id) {
-        return this.rest.download(`events`, `${this.baseUrl}/${id}/export`);
+        return this.rest.download(`events`, `${this.baseUrl}/${id}/export_source`);
     }
 }
 EventsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.3.0", ngImport: i0, type: EventsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
