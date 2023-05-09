@@ -14,6 +14,7 @@ export declare class Event extends BaseEntity {
     type: EventTypeCode;
     severity: SeverityTypeCode;
     score: number;
+    probability: number;
     status: EventStatusCode;
     indicators: Indicator[];
     ruleType: RuleTypeCode;
