@@ -496,35 +496,38 @@ var DeviceTypeCode;
 (function (DeviceTypeCode) {
     // Undefined [0] 
     DeviceTypeCode[DeviceTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Other (Unknown Device) [1] 
+    DeviceTypeCode[DeviceTypeCode["OTHER"] = 1] = "OTHER";
     // Industrial Controller [1] 
-    DeviceTypeCode[DeviceTypeCode["CONTROLLER"] = 1] = "CONTROLLER";
+    DeviceTypeCode[DeviceTypeCode["CONTROLLER"] = 2] = "CONTROLLER";
     // General smart meter [2] 
-    DeviceTypeCode[DeviceTypeCode["METER"] = 2] = "METER";
+    DeviceTypeCode[DeviceTypeCode["METER"] = 3] = "METER";
     // General sensor [3] 
-    DeviceTypeCode[DeviceTypeCode["SENSOR"] = 3] = "SENSOR";
+    DeviceTypeCode[DeviceTypeCode["SENSOR"] = 4] = "SENSOR";
     // General camera [4] 
-    DeviceTypeCode[DeviceTypeCode["CAMERA"] = 4] = "CAMERA";
+    DeviceTypeCode[DeviceTypeCode["CAMERA"] = 5] = "CAMERA";
     // Point of sale [5] 
-    DeviceTypeCode[DeviceTypeCode["POS"] = 5] = "POS";
+    DeviceTypeCode[DeviceTypeCode["POS"] = 6] = "POS";
     // Pump [6] 
-    DeviceTypeCode[DeviceTypeCode["PUMP"] = 6] = "PUMP";
+    DeviceTypeCode[DeviceTypeCode["PUMP"] = 7] = "PUMP";
     // EV charging station [7] 
-    DeviceTypeCode[DeviceTypeCode["CHARGING_STATION"] = 7] = "CHARGING_STATION";
+    DeviceTypeCode[DeviceTypeCode["CHARGING_STATION"] = 8] = "CHARGING_STATION";
     // Smart lightning [8] 
-    DeviceTypeCode[DeviceTypeCode["LIGHTNING"] = 8] = "LIGHTNING";
+    DeviceTypeCode[DeviceTypeCode["LIGHTNING"] = 9] = "LIGHTNING";
     // Temperature sensor [9] 
-    DeviceTypeCode[DeviceTypeCode["TEMPERATURE_SENSOR"] = 9] = "TEMPERATURE_SENSOR";
+    DeviceTypeCode[DeviceTypeCode["TEMPERATURE_SENSOR"] = 10] = "TEMPERATURE_SENSOR";
     // Air Quality sensor [10] 
-    DeviceTypeCode[DeviceTypeCode["AIR_QUALITY_SENSOR"] = 10] = "AIR_QUALITY_SENSOR";
+    DeviceTypeCode[DeviceTypeCode["AIR_QUALITY_SENSOR"] = 11] = "AIR_QUALITY_SENSOR";
     // Valve [11] 
-    DeviceTypeCode[DeviceTypeCode["VALVE"] = 11] = "VALVE";
+    DeviceTypeCode[DeviceTypeCode["VALVE"] = 12] = "VALVE";
     // Gateway [12] 
-    DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 12] = "GATEWAY";
+    DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 13] = "GATEWAY";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
 // Return list of DeviceTypeCode values and their display names
 function GetDeviceTypeCodes() {
     let result = new Map();
     result.set(DeviceTypeCode.UNDEFINED, 'Undefined');
+    result.set(DeviceTypeCode.OTHER, 'Other');
     result.set(DeviceTypeCode.CONTROLLER, 'Controller');
     result.set(DeviceTypeCode.METER, 'Meter');
     result.set(DeviceTypeCode.SENSOR, 'Sensor');
@@ -589,43 +592,46 @@ var EventTypeCode;
 (function (EventTypeCode) {
     // Undefined [0] 
     EventTypeCode[EventTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Device Takeover [1] 
-    EventTypeCode[EventTypeCode["DEVICE_TAKEOVER"] = 1] = "DEVICE_TAKEOVER";
-    // DDoS [2] 
-    EventTypeCode[EventTypeCode["DDOS"] = 2] = "DDOS";
-    // Unknown Malware [3] 
-    EventTypeCode[EventTypeCode["UNKNOWN_MALWARE"] = 3] = "UNKNOWN_MALWARE";
-    // Man-in-the-Middle [4] 
-    EventTypeCode[EventTypeCode["MAN_IN_THE_MIDDLE"] = 4] = "MAN_IN_THE_MIDDLE";
-    // Data Theft [5] 
-    EventTypeCode[EventTypeCode["DATA_THEFT"] = 5] = "DATA_THEFT";
-    // Port Scanning [6] 
-    EventTypeCode[EventTypeCode["PORT_SCANNING"] = 6] = "PORT_SCANNING";
-    // Abnormal Download [7] 
-    EventTypeCode[EventTypeCode["ABNORMAL_DOWNLOAD"] = 7] = "ABNORMAL_DOWNLOAD";
-    // Abnormal Incoming Connection [8] 
-    EventTypeCode[EventTypeCode["ABNORMAL_INCOMING_CONNECTION"] = 8] = "ABNORMAL_INCOMING_CONNECTION";
-    // Unsuccessful Connection Attempts [9] 
-    EventTypeCode[EventTypeCode["UNSUCCESSFUL_CONNECTION_ATTEMPTS"] = 9] = "UNSUCCESSFUL_CONNECTION_ATTEMPTS";
-    // High Volume Transmit [10] 
-    EventTypeCode[EventTypeCode["HIGH_VOLUME_TRANSIT"] = 10] = "HIGH_VOLUME_TRANSIT";
-    // Device Level Attack [11] 
-    EventTypeCode[EventTypeCode["DEVICE_LEVEL_ATTACK"] = 11] = "DEVICE_LEVEL_ATTACK";
-    // Replay Attack [12] 
-    EventTypeCode[EventTypeCode["REPLAY_ATTACK"] = 12] = "REPLAY_ATTACK";
-    // Attempted Device Takeover [13] 
-    EventTypeCode[EventTypeCode["DEVICE_TAKEOVER_ATTEMPT"] = 13] = "DEVICE_TAKEOVER_ATTEMPT";
-    // Unknown Operation' [14] 
-    EventTypeCode[EventTypeCode["UNKNOWN_OPERATION"] = 14] = "UNKNOWN_OPERATION";
-    // Crypto Mining [15] 
-    EventTypeCode[EventTypeCode["CRYPTO_MINING"] = 15] = "CRYPTO_MINING";
-    // Suspicious IP [16] 
-    EventTypeCode[EventTypeCode["SUSPICIOUS_IP"] = 16] = "SUSPICIOUS_IP";
+    // Other (Unknown Event) [1] 
+    EventTypeCode[EventTypeCode["OTHER"] = 1] = "OTHER";
+    // Device Takeover [2] 
+    EventTypeCode[EventTypeCode["DEVICE_TAKEOVER"] = 2] = "DEVICE_TAKEOVER";
+    // DDoS [3] 
+    EventTypeCode[EventTypeCode["DDOS"] = 3] = "DDOS";
+    // Unknown Malware [4] 
+    EventTypeCode[EventTypeCode["UNKNOWN_MALWARE"] = 4] = "UNKNOWN_MALWARE";
+    // Man-in-the-Middle [5] 
+    EventTypeCode[EventTypeCode["MAN_IN_THE_MIDDLE"] = 5] = "MAN_IN_THE_MIDDLE";
+    // Data Theft [6] 
+    EventTypeCode[EventTypeCode["DATA_THEFT"] = 6] = "DATA_THEFT";
+    // Port Scanning [7] 
+    EventTypeCode[EventTypeCode["PORT_SCANNING"] = 7] = "PORT_SCANNING";
+    // Abnormal Download [8] 
+    EventTypeCode[EventTypeCode["ABNORMAL_DOWNLOAD"] = 8] = "ABNORMAL_DOWNLOAD";
+    // Abnormal Incoming Connection [9] 
+    EventTypeCode[EventTypeCode["ABNORMAL_INCOMING_CONNECTION"] = 9] = "ABNORMAL_INCOMING_CONNECTION";
+    // Unsuccessful Connection Attempts [10] 
+    EventTypeCode[EventTypeCode["UNSUCCESSFUL_CONNECTION_ATTEMPTS"] = 10] = "UNSUCCESSFUL_CONNECTION_ATTEMPTS";
+    // High Volume Transmit [11] 
+    EventTypeCode[EventTypeCode["HIGH_VOLUME_TRANSIT"] = 11] = "HIGH_VOLUME_TRANSIT";
+    // Device Level Attack [12] 
+    EventTypeCode[EventTypeCode["DEVICE_LEVEL_ATTACK"] = 12] = "DEVICE_LEVEL_ATTACK";
+    // Replay Attack [13] 
+    EventTypeCode[EventTypeCode["REPLAY_ATTACK"] = 13] = "REPLAY_ATTACK";
+    // Attempted Device Takeover [14] 
+    EventTypeCode[EventTypeCode["DEVICE_TAKEOVER_ATTEMPT"] = 14] = "DEVICE_TAKEOVER_ATTEMPT";
+    // Unknown Operation [15] 
+    EventTypeCode[EventTypeCode["UNKNOWN_OPERATION"] = 15] = "UNKNOWN_OPERATION";
+    // Crypto Mining [16] 
+    EventTypeCode[EventTypeCode["CRYPTO_MINING"] = 16] = "CRYPTO_MINING";
+    // Suspicious IP [17] 
+    EventTypeCode[EventTypeCode["SUSPICIOUS_IP"] = 17] = "SUSPICIOUS_IP";
 })(EventTypeCode || (EventTypeCode = {}));
 // Return list of EventTypeCode values and their display names
 function GetEventTypeCodes() {
     let result = new Map();
     result.set(EventTypeCode.UNDEFINED, 'Undefined');
+    result.set(EventTypeCode.OTHER, 'Other');
     result.set(EventTypeCode.DEVICE_TAKEOVER, 'Device Takeover');
     result.set(EventTypeCode.DDOS, 'Ddos');
     result.set(EventTypeCode.UNKNOWN_MALWARE, 'Unknown Malware');
