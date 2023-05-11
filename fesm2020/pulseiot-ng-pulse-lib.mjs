@@ -274,9 +274,12 @@ class DNSRecord extends BaseEntity {
 
 // DataIngestion is the ingestion pipeline configuration
 class DataIngestion {
-    constructor(inputFilesURIs, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, usageOutputURIs, sessionOutputURIs, dNSOutputURIs, rawDataBackupURI, overwriteFiles, postAction, schedule) {
-        if (inputFilesURIs !== undefined) {
-            this.inputFilesURIs = inputFilesURIs;
+    constructor(inputURI, archiveURI, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, schedule) {
+        if (inputURI !== undefined) {
+            this.inputURI = inputURI;
+        }
+        if (archiveURI !== undefined) {
+            this.archiveURI = archiveURI;
         }
         if (inputFilesExt !== undefined) {
             this.inputFilesExt = inputFilesExt;
@@ -289,24 +292,6 @@ class DataIngestion {
         }
         if (sessionTimeWindowSec !== undefined) {
             this.sessionTimeWindowSec = sessionTimeWindowSec;
-        }
-        if (usageOutputURIs !== undefined) {
-            this.usageOutputURIs = usageOutputURIs;
-        }
-        if (sessionOutputURIs !== undefined) {
-            this.sessionOutputURIs = sessionOutputURIs;
-        }
-        if (dNSOutputURIs !== undefined) {
-            this.dNSOutputURIs = dNSOutputURIs;
-        }
-        if (rawDataBackupURI !== undefined) {
-            this.rawDataBackupURI = rawDataBackupURI;
-        }
-        if (overwriteFiles !== undefined) {
-            this.overwriteFiles = overwriteFiles;
-        }
-        if (postAction !== undefined) {
-            this.postAction = postAction;
         }
         if (schedule !== undefined) {
             this.schedule = schedule;
@@ -2148,6 +2133,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
                 }] }, { type: RestUtil }]; } });
 
 const Services = [
+    DevicesService,
+    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -2156,8 +2143,6 @@ const Services = [
     SysUsersService,
     UsrIntegrationsService,
     UserService,
-    DevicesService,
-    EventsService,
 ];
 
 class PulseLibModule {
