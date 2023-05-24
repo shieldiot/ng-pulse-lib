@@ -1,3 +1,4 @@
+import { StringKeyValue } from '../common/StringKeyValue';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { Event } from '../entities/Event';
 import { BaseEntity } from '../entities/BaseEntity';
@@ -17,6 +18,7 @@ export declare class DeviceWithEvents extends BaseEntity {
     eid: string;
     score: number;
     tags: string[];
+    labels: StringKeyValue[];
     eventCount: number;
     actionApplied: DeviceActionCode;
     actionAppliedBy: string;

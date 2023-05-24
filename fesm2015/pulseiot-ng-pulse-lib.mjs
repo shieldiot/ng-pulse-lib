@@ -79,6 +79,24 @@ class LoginParams {
     }
 }
 
+// Session data transformation parameters (to calculate z-score)
+class SessionTransform {
+    constructor(packetsIn, packetsOut, bytesIn, bytesOut) {
+        if (packetsIn !== undefined) {
+            this.packetsIn = packetsIn;
+        }
+        if (packetsOut !== undefined) {
+            this.packetsOut = packetsOut;
+        }
+        if (bytesIn !== undefined) {
+            this.bytesIn = bytesIn;
+        }
+        if (bytesOut !== undefined) {
+            this.bytesOut = bytesOut;
+        }
+    }
+}
+
 // String Int Value tuple
 class StringIntValue {
     constructor(key, value) {
@@ -220,6 +238,30 @@ class TokenData {
     }
 }
 
+// Usage data transformation parameters (to calculate z-score)
+class UsageTransform {
+    constructor(packetsIn, packetsOut, bytesIn, bytesOut, endpointsCount, portsCount) {
+        if (packetsIn !== undefined) {
+            this.packetsIn = packetsIn;
+        }
+        if (packetsOut !== undefined) {
+            this.packetsOut = packetsOut;
+        }
+        if (bytesIn !== undefined) {
+            this.bytesIn = bytesIn;
+        }
+        if (bytesOut !== undefined) {
+            this.bytesOut = bytesOut;
+        }
+        if (endpointsCount !== undefined) {
+            this.endpointsCount = endpointsCount;
+        }
+        if (portsCount !== undefined) {
+            this.portsCount = portsCount;
+        }
+    }
+}
+
 // ZScore parameters
 class ZScore {
     constructor(mean, sD) {
@@ -274,7 +316,7 @@ class DNSRecord extends BaseEntity {
 
 // DataIngestion is the ingestion pipeline configuration
 class DataIngestion {
-    constructor(inputURI, archiveURI, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, schedule) {
+    constructor(inputURI, archiveURI, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, schedule, defaultDeviceType, isStaticIPs) {
         if (inputURI !== undefined) {
             this.inputURI = inputURI;
         }
@@ -296,6 +338,12 @@ class DataIngestion {
         if (schedule !== undefined) {
             this.schedule = schedule;
         }
+        if (defaultDeviceType !== undefined) {
+            this.defaultDeviceType = defaultDeviceType;
+        }
+        if (isStaticIPs !== undefined) {
+            this.isStaticIPs = isStaticIPs;
+        }
     }
 }
 
@@ -308,6 +356,9 @@ class DeviceWithEvents extends BaseEntity {
 }
 
 // Cyber event entity
+// The Event entity is created by multiple services (e.g. ip reputation, static rules, anomaly detection) by analyzing network statistics (usage and session data) and related to specific IP address.
+// Since it is not always clear what is the actual device with the IP address (RADIUS or DIAMETER logs can be provided later), we should be able to create event without device Id and assign the device Id later on.
+// For this purpose, when the device Id is not provided, the event will be created with the `unknown` value in the deviceId field and the eventId must follow the following pattern: streamId:timestamp:ip_address
 class Event extends BaseEntity {
 }
 
@@ -339,6 +390,10 @@ class Integration extends BaseEntity {
 class Member extends BaseEntity {
 }
 
+// Radius entity is an IP allocation to device IMSI entry
+class Radius extends BaseEntity {
+}
+
 // Deterministic Rule definition
 class Rule extends BaseEntity {
 }
@@ -361,9 +416,15 @@ class Stream extends BaseEntity {
 
 // StreamConfig is a stream configuration description
 class StreamConfig {
-    constructor(ingest) {
+    constructor(ingest, sessionTransform, usageTransform) {
         if (ingest !== undefined) {
             this.ingest = ingest;
+        }
+        if (sessionTransform !== undefined) {
+            this.sessionTransform = sessionTransform;
+        }
+        if (usageTransform !== undefined) {
+            this.usageTransform = usageTransform;
         }
     }
 }
@@ -486,30 +547,32 @@ var DeviceTypeCode;
     DeviceTypeCode[DeviceTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
     // Other (Unknown Device) [1] 
     DeviceTypeCode[DeviceTypeCode["OTHER"] = 1] = "OTHER";
-    // Industrial Controller [1] 
+    // Industrial Controller [2] 
     DeviceTypeCode[DeviceTypeCode["CONTROLLER"] = 2] = "CONTROLLER";
-    // General smart meter [2] 
+    // General smart meter [3] 
     DeviceTypeCode[DeviceTypeCode["METER"] = 3] = "METER";
-    // General sensor [3] 
+    // General sensor [4] 
     DeviceTypeCode[DeviceTypeCode["SENSOR"] = 4] = "SENSOR";
-    // General camera [4] 
+    // General camera [5] 
     DeviceTypeCode[DeviceTypeCode["CAMERA"] = 5] = "CAMERA";
-    // Point of sale [5] 
+    // Point of sale [6] 
     DeviceTypeCode[DeviceTypeCode["POS"] = 6] = "POS";
-    // Pump [6] 
+    // Pump [7] 
     DeviceTypeCode[DeviceTypeCode["PUMP"] = 7] = "PUMP";
-    // EV charging station [7] 
+    // EV charging station [8] 
     DeviceTypeCode[DeviceTypeCode["CHARGING_STATION"] = 8] = "CHARGING_STATION";
-    // Smart lightning [8] 
+    // Smart lightning [9] 
     DeviceTypeCode[DeviceTypeCode["LIGHTNING"] = 9] = "LIGHTNING";
-    // Temperature sensor [9] 
+    // Temperature sensor [10] 
     DeviceTypeCode[DeviceTypeCode["TEMPERATURE_SENSOR"] = 10] = "TEMPERATURE_SENSOR";
-    // Air Quality sensor [10] 
+    // Air Quality sensor [11] 
     DeviceTypeCode[DeviceTypeCode["AIR_QUALITY_SENSOR"] = 11] = "AIR_QUALITY_SENSOR";
-    // Valve [11] 
+    // Valve [12] 
     DeviceTypeCode[DeviceTypeCode["VALVE"] = 12] = "VALVE";
-    // Gateway [12] 
+    // Gateway [13] 
     DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 13] = "GATEWAY";
+    // ATM [13] 
+    DeviceTypeCode[DeviceTypeCode["ATM"] = 14] = "ATM";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
 // Return list of DeviceTypeCode values and their display names
 function GetDeviceTypeCodes() {
@@ -528,6 +591,7 @@ function GetDeviceTypeCodes() {
     result.set(DeviceTypeCode.AIR_QUALITY_SENSOR, 'Air Quality Sensor');
     result.set(DeviceTypeCode.VALVE, 'Valve');
     result.set(DeviceTypeCode.GATEWAY, 'Gateway');
+    result.set(DeviceTypeCode.ATM, 'Atm');
     return result;
 }
 
@@ -2153,8 +2217,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
     } });
 
 const Services = [
-    DevicesService,
-    EventsService,
     SysAccountsService,
     SysMembersService,
     SysRuleTemplatesService,
@@ -2163,6 +2225,8 @@ const Services = [
     SysUsersService,
     UsrIntegrationsService,
     UserService,
+    DevicesService,
+    EventsService,
 ];
 
 class PulseLibModule {
@@ -2193,5 +2257,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, Radius, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SessionTransform, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, UsageTransform, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map

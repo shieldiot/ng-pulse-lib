@@ -1,7 +1,8 @@
-import { DeviceTypeCode } from '../enums/DeviceTypeCode';
-import { DeviceStatusCode } from '../enums/DeviceStatusCode';
+import { StringKeyValue } from '../common/StringKeyValue';
 import { DeviceActionCode } from '../enums/DeviceActionCode';
 import { BaseEntity } from '../entities/BaseEntity';
+import { DeviceTypeCode } from '../enums/DeviceTypeCode';
+import { DeviceStatusCode } from '../enums/DeviceStatusCode';
 export declare class Device extends BaseEntity {
     accountId: string;
     streamId: string;
@@ -16,6 +17,7 @@ export declare class Device extends BaseEntity {
     eid: string;
     score: number;
     tags: string[];
+    labels: StringKeyValue[];
     eventCount: number;
     actionApplied: DeviceActionCode;
     actionAppliedBy: string;
