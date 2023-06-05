@@ -311,12 +311,14 @@ class Checkpoint extends BaseEntity {
 }
 
 // DNSRecord represents network statistics of DNS requests
+// The createdOn field represents the first communication time of the device within this time window
+// The updatedOn field represents the last communication time of the device within this time window
 class DNSRecord extends BaseEntity {
 }
 
 // DataIngestion is the ingestion pipeline configuration
 class DataIngestion {
-    constructor(inputURI, archiveURI, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, schedule, defaultDeviceType, isStaticIPs) {
+    constructor(inputURI, archiveURI, inputFilesExt, subNets, usageTimeWindowSec, sessionTimeWindowSec, schedule, defaultDeviceType, deviceCreationPolicy) {
         if (inputURI !== undefined) {
             this.inputURI = inputURI;
         }
@@ -341,8 +343,8 @@ class DataIngestion {
         if (defaultDeviceType !== undefined) {
             this.defaultDeviceType = defaultDeviceType;
         }
-        if (isStaticIPs !== undefined) {
-            this.isStaticIPs = isStaticIPs;
+        if (deviceCreationPolicy !== undefined) {
+            this.deviceCreationPolicy = deviceCreationPolicy;
         }
     }
 }
@@ -403,6 +405,9 @@ class RuleTemplate extends BaseEntity {
 }
 
 // SessionRecord represents network statistics for a session
+// The unique Id of session record is based on the template: [window_start_time]-[device_id]-[session_id]
+// The createdOn field represents the first communication time of the device within this time window
+// The updatedOn field represents the last communication time of the device within this time window
 class SessionRecord extends BaseEntity {
 }
 
@@ -430,6 +435,9 @@ class StreamConfig {
 }
 
 // UsageRecord represents network statistics
+// The unique Id of usage record is based on the template: [window_start_time]-[stream_id]-[device_id]
+// The createdOn field represents the first communication time of the device within this time window
+// The updatedOn field represents the last communication time of the device within this time window
 class UsageRecord extends BaseEntity {
 }
 
@@ -515,6 +523,31 @@ function GetDeviceActionCodes() {
     return result;
 }
 
+// Device creation policy code
+var DeviceCreationCode;
+(function (DeviceCreationCode) {
+    // Undefined [0] 
+    DeviceCreationCode[DeviceCreationCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Do not create device [1] 
+    DeviceCreationCode[DeviceCreationCode["NONE"] = 1] = "NONE";
+    // Create Device based on static IP [2] 
+    DeviceCreationCode[DeviceCreationCode["IP"] = 2] = "IP";
+    // Create Device based on Subscriber Id - IMSI [3] 
+    DeviceCreationCode[DeviceCreationCode["SID"] = 3] = "SID";
+    // Create Device based on Equipment Id - IMEI [4] 
+    DeviceCreationCode[DeviceCreationCode["EID"] = 4] = "EID";
+})(DeviceCreationCode || (DeviceCreationCode = {}));
+// Return list of DeviceCreationCode values and their display names
+function GetDeviceCreationCodes() {
+    let result = new Map();
+    result.set(DeviceCreationCode.UNDEFINED, 'Undefined');
+    result.set(DeviceCreationCode.NONE, 'None');
+    result.set(DeviceCreationCode.IP, 'Ip');
+    result.set(DeviceCreationCode.SID, 'Sid');
+    result.set(DeviceCreationCode.EID, 'Eid');
+    return result;
+}
+
 // Device status code
 var DeviceStatusCode;
 (function (DeviceStatusCode) {
@@ -571,7 +604,7 @@ var DeviceTypeCode;
     DeviceTypeCode[DeviceTypeCode["VALVE"] = 12] = "VALVE";
     // Gateway [13] 
     DeviceTypeCode[DeviceTypeCode["GATEWAY"] = 13] = "GATEWAY";
-    // ATM [13] 
+    // ATM [14] 
     DeviceTypeCode[DeviceTypeCode["ATM"] = 14] = "ATM";
 })(DeviceTypeCode || (DeviceTypeCode = {}));
 // Return list of DeviceTypeCode values and their display names
@@ -2257,5 +2290,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, Radius, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SessionTransform, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, UsageTransform, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceCreationCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceCreationCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, Radius, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SessionTransform, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, UsageTransform, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
