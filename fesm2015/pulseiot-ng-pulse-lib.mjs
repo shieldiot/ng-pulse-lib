@@ -64,6 +64,27 @@ class IntKeyValue {
     }
 }
 
+// Link represents a relation between two nodes
+class Link {
+    constructor(id, name, src, dst, value) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (src !== undefined) {
+            this.src = src;
+        }
+        if (dst !== undefined) {
+            this.dst = dst;
+        }
+        if (value !== undefined) {
+            this.value = value;
+        }
+    }
+}
+
 // Login parameters data model
 class LoginParams {
     constructor(email, password, accessToken) {
@@ -75,6 +96,36 @@ class LoginParams {
         }
         if (accessToken !== undefined) {
             this.accessToken = accessToken;
+        }
+    }
+}
+
+// NetworkMap is a data structure representing a set of nodes and vertex representing a network
+class NetworkMap {
+    constructor(nodes, links) {
+        if (nodes !== undefined) {
+            this.nodes = nodes;
+        }
+        if (links !== undefined) {
+            this.links = links;
+        }
+    }
+}
+
+// Node represents a vertex in a network map
+class Node {
+    constructor(id, name, ip, type) {
+        if (id !== undefined) {
+            this.id = id;
+        }
+        if (name !== undefined) {
+            this.name = name;
+        }
+        if (ip !== undefined) {
+            this.ip = ip;
+        }
+        if (type !== undefined) {
+            this.type = type;
         }
     }
 }
@@ -353,6 +404,10 @@ class DataIngestion {
 class Device extends BaseEntity {
 }
 
+// DeviceReport is a periodic (usually daily) snapshot on status of all devices, field createdOn indicates the snapshot time
+class DeviceReport extends BaseEntity {
+}
+
 // DeviceWithEvents entity is a device with its related events (for display only)
 class DeviceWithEvents extends BaseEntity {
 }
@@ -366,6 +421,14 @@ class Event extends BaseEntity {
 
 // EventWithDevice entity is an event with the device information (for display only)
 class EventWithDevice extends BaseEntity {
+}
+
+// Feature entity is capability in the system used for feature toggle
+class Feature extends BaseEntity {
+}
+
+// FeaturesGroup group represents a group of capabilities in the system used for feature toggle
+class FeaturesGroup extends BaseEntity {
 }
 
 // IntDistribution model represents a grouped counts of elements of type int (usually enum)
@@ -733,6 +796,22 @@ function GetEventTypeCodes() {
     result.set(EventTypeCode.UNKNOWN_OPERATION, 'Unknown Operation');
     result.set(EventTypeCode.CRYPTO_MINING, 'Crypto Mining');
     result.set(EventTypeCode.SUSPICIOUS_IP, 'Suspicious Ip');
+    return result;
+}
+
+// Feature code
+var FeatureCode;
+(function (FeatureCode) {
+    // Undefined [0] 
+    FeatureCode[FeatureCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Network Map view [1] 
+    FeatureCode[FeatureCode["NETWORK_MAP_VIEW"] = 1] = "NETWORK_MAP_VIEW";
+})(FeatureCode || (FeatureCode = {}));
+// Return list of FeatureCode values and their display names
+function GetFeatureCodes() {
+    let result = new Map();
+    result.set(FeatureCode.UNDEFINED, 'Undefined');
+    result.set(FeatureCode.NETWORK_MAP_VIEW, 'Network Map View');
     return result;
 }
 
@@ -2232,6 +2311,12 @@ class UserService {
         return this.rest.get(`${this.baseUrl}/get-account`);
     }
     /**
+     * Get the user's current account features (aggregated list of all features in all the account's features groups)
+     */
+    getAccountFeatures() {
+        return this.rest.get(`${this.baseUrl}/get-account-features`);
+    }
+    /**
      * Get all the user memberships (all accounts that the current user has access to)
      */
     getMemberships() {
@@ -2290,5 +2375,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.3.0", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceCreationCode, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceCreationCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, LoginParams, Member, MemberRoleCode, PulseConfig, PulseLibModule, Radius, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SessionTransform, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, UsageTransform, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
+export { Account, AccountRole, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AuditLog, BaseEntity, BaseRestResponse, Checkpoint, DNSRecord, DataIngestion, Device, DeviceActionCode, DeviceCreationCode, DeviceReport, DeviceStatusCode, DeviceTypeCode, DeviceWithEvents, DevicesService, EntitiesResponse, EntityResponse, Event, EventCategoryCode, EventStatusCode, EventTypeCode, EventWithDevice, EventsService, Feature, FeatureCode, FeaturesGroup, FloatKeyValue, GetAccountStatusCodes, GetAccountTypeCodes, GetDeviceActionCodes, GetDeviceCreationCodes, GetDeviceStatusCodes, GetDeviceTypeCodes, GetEventCategoryCodes, GetEventStatusCodes, GetEventTypeCodes, GetFeatureCodes, GetIntegrationTypeCodes, GetMemberRoleCodes, GetRuleTypeCodes, GetSeverityTypeCodes, GetUserStatusCodes, GetUserTypeCodes, Indicator, IntDistribution, IntKeyValue, Integration, IntegrationTypeCode, Link, LoginParams, Member, MemberRoleCode, NetworkMap, Node, PulseConfig, PulseLibModule, Radius, RestUtil, Rule, RuleTemplate, RuleTypeCode, Services, SessionRecord, SessionTransform, SeverityTypeCode, Shieldex, Stream, StreamConfig, StringIntValue, StringKeyValue, SysAccountsService, SysMembersService, SysRuleTemplatesService, SysRulesService, SysStreamsService, SysUsersService, TimeDataPoint, TimeDataPoint2D, TimeDataPointFloat, TimeFrame, TimeSeries, TimeSeriesOf2D, TimeSeriesOfFloat, TokenData, UsageRecord, UsageTransform, User, UserMembership, UserMemberships, UserService, UserStatusCode, UserTypeCode, UsrIntegrationsService, ZScore };
 //# sourceMappingURL=pulseiot-ng-pulse-lib.mjs.map
